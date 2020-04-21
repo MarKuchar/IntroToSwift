@@ -15,6 +15,15 @@ let userInputAge: String = "34e"
  */
 var prices = ["Chips": 2.99, "Donuts": 1.89, "Juice": 3.99, "Apple": 0.50, "Banana": 0.25, "Broccoli": 0.99]
 var stock = ["Chips": 4, "Donuts": 0, "Juice": 12, "Apple": 6, "Banana": 6, "Broccoli": 3]
-
-
+func purchase(name: String) -> Double? {
+    if let item = stock[name] {
+        if item > 1 {
+            if let price = prices[name] {
+            return price
+            }
+        }
+    }
+    return nil
+}
+print(purchase(name: "Chips")!)
 //: [Previous](@previous)  |  page 3 of 6  |  [Next: App Exercise - Food Functions](@next)
