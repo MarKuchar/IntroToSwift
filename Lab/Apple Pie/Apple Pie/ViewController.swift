@@ -9,15 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var listOfWords: [String] = ["hamburger", "pizza", "mark", "squash",
+    var listOfWords: [String] = ["hamburger", "apple", "january", "squash",
     "tiger", "jaguar", "hockey"]
-    let incorrectMovesAllowed = 7
-    var totalWins = 0 {
+    let incorrectMovesAllowed = 5
+    var guessCoutner = 0
+    var totalWinsP1 = 0 {
         didSet {
             newRound()
         }
     }
     var totalLosses = 0 {
+        didSet {
+            newRound()
+        }
+    }
+    var totalWinsP2 = 0 {
         didSet {
             newRound()
         }
@@ -28,7 +34,9 @@ class ViewController: UIViewController {
     @IBOutlet var correctWordLabel: UILabel!
     
     @IBOutlet var scoreLabel: UILabel!
-
+    @IBOutlet var scoreLabel2: UILabel!
+    @IBOutlet var Looses: UILabel!
+    
     @IBOutlet var letterButtons: [UIButton]!
     
     var currentGame: Game!
@@ -42,8 +50,10 @@ class ViewController: UIViewController {
     func newRound() {
         if !listOfWords.isEmpty {
         let newWord = listOfWords.remove(at: 0)
-        currentGame = Game(word: newWord, incorrectMovesRemaining: incorrectMovesAllowed, guessedLetters: [])
+        currentGame = Game(word: newWord, incorrectMovesRemainingPlayer1: incorrectMovesAllowed, incorrectMovesRemainingPlayer2: incorrectMovesAllowed,
+            guessedLetters: [])
         enableLetterButtons(true)
+            guessCoutner = 0
         updateUI()
         } else {
             enableLetterButtons(false)
@@ -57,23 +67,44 @@ class ViewController: UIViewController {
         }
         let wordWithSpacing = letters.joined(separator: " ")
         correctWordLabel.text = wordWithSpacing
-        scoreLabel.text = "Wins: \(totalWins), Losses: \(totalLosses)"
-        treeImageView.image = UIImage(named: "Tree \(currentGame.incorrectMovesRemaining)")
+        scoreLabel.text = "Player 1 wins: \(totalWinsP1)"
+        scoreLabel2.text = "Player 2 wins: \(totalWinsP2)"
+        Looses.text = "Total looses: \(totalLosses)"
+        if guessCoutner % 2 == 0 {
+            treeImageView.image = UIImage(named: "Tree \(currentGame.incorrectMovesRemainingPlayer1)")
+            scoreLabel.backgroundColor = .green
+            scoreLabel2.backgroundColor = .white
+        } else {
+            treeImageView.image = UIImage(named: "Tree \(currentGame.incorrectMovesRemainingPlayer2)")
+            scoreLabel2.backgroundColor = .green
+            scoreLabel.backgroundColor = .white
+        }
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         sender.isEnabled = false
         let letterString = sender.title(for: .normal)!
         let letter = Character(letterString.lowercased())
-        currentGame.playerGuessed(letter: letter)
+        if guessCoutner % 2 == 0 {
+            currentGame.player1Guessed(letter: letter)
+        } else {
+            currentGame.player2Guessed(letter: letter)
+        }
+        guessCoutner += 1
         updateGameState()
     }
     
     func updateGameState() {
         if currentGame.word == currentGame.formattedWord {
-            totalWins += 1
-        } else if currentGame.incorrectMovesRemaining == 0 {
-            totalLosses += 1
+            if guessCoutner % 2 == 1 {
+                totalWinsP1 += 1
+            } else {
+                totalWinsP2 += 1
+            }
+        } else if currentGame.incorrectMovesRemainingPlayer1 == 0 {
+            totalWinsP2 += 1
+        } else if currentGame.incorrectMovesRemainingPlayer2 == 0 {
+            totalWinsP1 += 1
         } else {
             updateUI()
         }
