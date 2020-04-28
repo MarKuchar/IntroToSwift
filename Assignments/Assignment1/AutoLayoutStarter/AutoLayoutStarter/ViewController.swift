@@ -47,13 +47,44 @@ class ViewController: UIViewController {
         return orange2
     }()
     
+    var blueBox: UIView = {
+        let blue = UIView()
+        blue.translatesAutoresizingMaskIntoConstraints = false
+        blue.backgroundColor = .blue
+        return blue
+    }()
+    
+    var blueBox2: UIView = {
+           let blue = UIView()
+           blue.translatesAutoresizingMaskIntoConstraints = false
+           blue.backgroundColor = .blue
+           return blue
+       }()
+    
+    var blueBox3: UIView = {
+           let blue = UIView()
+           blue.translatesAutoresizingMaskIntoConstraints = false
+           blue.backgroundColor = .blue
+           return blue
+       }()
+    
     var horizontalStacView: UIStackView = {
+        var hStack = UIStackView()
+        hStack.translatesAutoresizingMaskIntoConstraints = false
+        hStack.axis = .horizontal
+        hStack.alignment = .center
+        hStack.distribution = .equalSpacing
+        hStack.spacing = 10
+        return hStack
+    }()
+    
+    var verticalStackView: UIStackView = {
         var vStack = UIStackView()
-        vStack.translatesAutoresizingMaskIntoConstraints = false;
-        vStack.axis = .horizontal
+        vStack.translatesAutoresizingMaskIntoConstraints = false
+        vStack.axis = .vertical
         vStack.alignment = .center
         vStack.distribution = .equalSpacing
-        vStack.spacing = 10
+        
         return vStack
     }()
   
@@ -87,24 +118,24 @@ class ViewController: UIViewController {
   var widthAnchor: NSLayoutConstraint?
   var heightAnchor: NSLayoutConstraint?
   
-    
+//*********************viewDidLoad*********************
     
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     addViews()
     addConstraints()
-    horizontalStacView.addArrangedSubview(orangeBox2)
-    horizontalStacView.addArrangedSubview(orangeBox1)
+    stackProperties()
     setupLayout()
   }
     
-    
+//*********************FUNCTIONS*********************
     
     func addViews() {
         mainView.addSubview(purpleBox)
         mainView.addSubview(redBox)
         mainView.addSubview(horizontalStacView)
+        mainView.addSubview(verticalStackView)
         view.addSubview(mainView)
      }
     
@@ -113,18 +144,38 @@ class ViewController: UIViewController {
         addRedBoxConstraints()
         addHStackConstrains()
         addOrangeBoxConstrains()
+        addVStackConstrains()
+        addBlueBoxConstraints()
     }
     
     func stackProperties() {
         horizontalStacView.addArrangedSubview(orangeBox1)
         horizontalStacView.addArrangedSubview(orangeBox2)
+        verticalStackView.addArrangedSubview(blueBox)
+        verticalStackView.addArrangedSubview(blueBox2)
+        verticalStackView.addArrangedSubview(blueBox3)
+        
+    }
+    
+    func addBlueBoxConstraints() {
+        NSLayoutConstraint.activate([blueBox.heightAnchor.constraint(equalToConstant: 80),
+        blueBox.widthAnchor.constraint(equalToConstant: 80), blueBox2.heightAnchor.constraint(equalToConstant: 80),
+        blueBox2.widthAnchor.constraint(equalToConstant: 80), blueBox3.heightAnchor.constraint(equalToConstant: 80),
+        blueBox3.widthAnchor.constraint(equalToConstant: 80)])
     }
     
     func addOrangeBoxConstrains() {
-        orangeBox1.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        orangeBox1.widthAnchor.constraint(equalToConstant: 55).isActive = true
-        orangeBox2.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        orangeBox2.widthAnchor.constraint(equalToConstant: 95).isActive = true
+        NSLayoutConstraint.activate([orangeBox1.heightAnchor.constraint(equalToConstant: 40),
+        orangeBox1.widthAnchor.constraint(equalToConstant: 55),
+        orangeBox2.heightAnchor.constraint(equalToConstant: 40),
+        orangeBox2.widthAnchor.constraint(equalToConstant: 95)])
+    }
+    
+    func addVStackConstrains() {
+        NSLayoutConstraint.activate([verticalStackView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor),
+        verticalStackView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor),
+        verticalStackView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.7, constant: 0),
+        verticalStackView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.5, constant: 0)])
     }
     
     func addHStackConstrains() {
@@ -142,8 +193,7 @@ class ViewController: UIViewController {
         let purpleBoxTrailingConstraint = NSLayoutConstraint(item: mainView, attribute: .trailing, relatedBy: .equal, toItem: purpleBox, attribute: .trailing, multiplier: 1, constant: 20)
         let purpleBoxBottomConstraint = NSLayoutConstraint(item: mainView, attribute: .bottom, relatedBy: .equal, toItem: purpleBox, attribute: .bottom, multiplier: 1, constant: 20)
         let purpleBoxWithConstraint = NSLayoutConstraint(item: purpleBox, attribute: .width, relatedBy: .equal, toItem: mainView, attribute: .width, multiplier: 0.7, constant: 0)
-        purpleBox.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        NSLayoutConstraint.activate([purpleBoxBottomConstraint, purpleBoxTrailingConstraint, purpleBoxWithConstraint])
+        NSLayoutConstraint.activate([purpleBoxBottomConstraint, purpleBoxTrailingConstraint, purpleBoxWithConstraint, purpleBox.heightAnchor.constraint(equalToConstant: 60)])
     }
     
 
