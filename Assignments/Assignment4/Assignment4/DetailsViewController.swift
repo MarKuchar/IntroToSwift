@@ -59,7 +59,9 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        vStackView = UIStackView(arrangedSubviews: [countryLabel, particularCountryImage, cityLabel, particularCityLabel, temperatureLabel,particularTemperatureLabel, summaryLabel, particularSummaryLabel])
+        vStackView = UIStackView(arrangedSubviews: [countryLabel, particularCountryImage, cityLabel, particularCityLabel,
+                                                    temperatureLabel,particularTemperatureLabel,
+                                                    summaryLabel, particularSummaryLabel])
         view.addSubview(vStackView!)
         setVStack()
         view.backgroundColor = .white

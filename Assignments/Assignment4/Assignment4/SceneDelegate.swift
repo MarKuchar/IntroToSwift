@@ -11,6 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
+    let tabVC = UITabBarController()
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -22,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(windowScene: windowScene)
     window?.makeKeyAndVisible()
     
-    let tabVC = UITabBarController()
     window?.rootViewController = tabVC
 
     // 5 cities
@@ -32,26 +32,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let saoPaulo = City(name: "Sao Paulo", temp: 32, precipitation: 20, icon: "brazil", summary: "Sunny")
     let seoul = City(name: "Seoul", temp: 35, precipitation: 50, icon: "skorea", summary: "Sunny")
     
-    let vanVC = CityViewController()
-    vanVC.city = vancouver
-    vanVC.tabBarItem = UITabBarItem(title: vancouver.name, image: UIImage(named: vancouver.icon), selectedImage: nil)
-    let verVC = CityViewController()
-    verVC.city = verona
-    verVC.tabBarItem = UITabBarItem(title: verona.name, image: UIImage(named: verona.icon), selectedImage: nil)
-    let tokVC = CityViewController()
-    tokVC.city = tokyo
-    tokVC.tabBarItem = UITabBarItem(title: tokyo.name, image: UIImage(named: tokyo.icon), selectedImage: nil)
-    let spVC = CityViewController()
-    spVC.city = saoPaulo
-    spVC.tabBarItem = UITabBarItem(title: saoPaulo.name, image: UIImage(named: saoPaulo.icon), selectedImage: nil)
-    let seoulVC = CityViewController()
-    seoulVC.city = seoul
-    seoulVC.tabBarItem = UITabBarItem(title: seoul.name, image: UIImage(named: seoul.icon), selectedImage: nil)
-    let cities = [vanVC, verVC, tokVC, spVC, seoulVC]
-    
-    tabVC.viewControllers = cities.map { UINavigationController(rootViewController: $0) }
-    
+    tabVC.viewControllers = [
+        addTabBarItem(city: vancouver),
+        addTabBarItem(city: verona),
+        addTabBarItem(city: tokyo),
+        addTabBarItem(city: saoPaulo),
+        addTabBarItem(city: seoul)].map {
+            UINavigationController(rootViewController: $0)
+    }
   }
+    
+    
+    func addTabBarItem(city: City) -> CityViewController {
+        let cityViewController = CityViewController()
+        cityViewController.city = city
+        cityViewController.tabBarItem = UITabBarItem(title: city.name, image: UIImage(named: city.icon), selectedImage: nil)
+        return cityViewController
+    }
   
   func sceneDidDisconnect(_ scene: UIScene) {
     // Called as the scene is being released by the system.
