@@ -25,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let tabVC = UITabBarController()
     window?.rootViewController = tabVC
 
-    
     // 5 cities
     let vancouver = City(name: "Vancouver", temp: 15, precipitation: 95, icon: "canada", summary: "Rainy")
     let verona = City(name: "Verona", temp: 22, precipitation: 20, icon: "italy", summary: "Cloudy")
