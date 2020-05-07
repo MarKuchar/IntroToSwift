@@ -68,6 +68,16 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         addViews()
         setConstraints()
+        
+        start.addTarget(self, action: #selector(beginQuiz), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     func addViews() {
@@ -80,6 +90,14 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(start)
     }
     
+    @objc func beginQuiz(_ sender: UIButton) {
+        let questionView = QuizViewController()
+        navigationController?.pushViewController(questionView, animated: true)
+//        questionView.modalPresentationStyle = .fullScreen
+//        self.present(questionView, animated: true, completion: nil)
+        
+    }
+    
     func setConstraints() {
         NSLayoutConstraint.activate([stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -88,9 +106,9 @@ class ViewController: UIViewController {
                                      quizTittle.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)])
         
         NSLayoutConstraint.activate([svkImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-                                        svkImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-                                        svkImage.heightAnchor.constraint(equalToConstant: 55),
-                                        svkImage.widthAnchor.constraint(equalToConstant: 70)])
+                                     svkImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+                                     svkImage.heightAnchor.constraint(equalToConstant: 55),
+                                     svkImage.widthAnchor.constraint(equalToConstant: 70)])
         
         NSLayoutConstraint.activate([caImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
                                      caImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
@@ -98,12 +116,12 @@ class ViewController: UIViewController {
                                      caImage.widthAnchor.constraint(equalToConstant: 55)])
         
         NSLayoutConstraint.activate([brImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-                                     brImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+                                     brImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
                                      brImage.heightAnchor.constraint(equalToConstant: 55),
                                      brImage.widthAnchor.constraint(equalToConstant: 55)])
         
         NSLayoutConstraint.activate([jpImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-                                     jpImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+                                     jpImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
                                      jpImage.heightAnchor.constraint(equalToConstant: 55),
                                      jpImage.widthAnchor.constraint(equalToConstant: 55)])
     }
