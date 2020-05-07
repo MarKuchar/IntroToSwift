@@ -173,6 +173,15 @@ class QuizViewController: UIViewController {
         return label
     }()
     
+    let progressView: UIProgressView = {
+        let progress = UIProgressView(progressViewStyle: .bar)
+        progress.setProgress(0.5, animated: true)
+        progress.trackTintColor = .gray
+        progress.tintColor = .green
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,11 +191,13 @@ class QuizViewController: UIViewController {
         navigationItem.title = "Questions"
         view.addSubview(vView)
         view.addSubview(labelQuestion)
+        view.addSubview(progressView)
         btn1.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
         btnSubmit.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
         setSingleQuestionStack(vView)
         addProperties()
         setConstrainsQuestionLabel()
+        setProggressViewConstraints()
     }
     
     func addProperties() {
@@ -211,6 +222,12 @@ class QuizViewController: UIViewController {
         NSLayoutConstraint.activate([labelQuestion.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
                                      labelQuestion.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      labelQuestion.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)])
+    }
+    
+    func setProggressViewConstraints() {
+        NSLayoutConstraint.activate([progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     progressView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+                                     progressView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)])
     }
     
     func setMultipleQuestionStack() {
@@ -260,6 +277,10 @@ class QuizViewController: UIViewController {
                 view.addSubview(vViewSlider)
                 setHorizontalStack()
                 setSliderStack()
+                btnSubmit.tag = 3
+            case 3:
+                let resultController = ResultViewController()
+                navigationController?.pushViewController(resultController, animated: true)
             default:
                 print("OTHER")
         }

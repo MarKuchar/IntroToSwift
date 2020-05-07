@@ -108,7 +108,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([svkImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
                                      svkImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
                                      svkImage.heightAnchor.constraint(equalToConstant: 55),
-                                     svkImage.widthAnchor.constraint(equalToConstant: 70)])
+                                     svkImage.widthAnchor.constraint(equalToConstant: 55)])
         
         NSLayoutConstraint.activate([caImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
                                      caImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
