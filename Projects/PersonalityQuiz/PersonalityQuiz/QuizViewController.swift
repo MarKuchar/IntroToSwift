@@ -165,6 +165,14 @@ class QuizViewController: UIViewController {
         return vView
     }()
     
+    let labelQuestion: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Current Q"
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,10 +181,12 @@ class QuizViewController: UIViewController {
 //        self.navigationController?.present(nav, animated: true, completion: nil)
         navigationItem.title = "Questions"
         view.addSubview(vView)
+        view.addSubview(labelQuestion)
         btn1.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
         btnSubmit.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
         setSingleQuestionStack(vView)
         addProperties()
+        setConstrainsQuestionLabel()
     }
     
     func addProperties() {
@@ -195,6 +205,12 @@ class QuizViewController: UIViewController {
         vView3.addArrangedSubview(label2)
         vView3.addArrangedSubview(label3)
         vView3.addArrangedSubview(label4)
+    }
+    
+    func setConstrainsQuestionLabel() {
+        NSLayoutConstraint.activate([labelQuestion.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+                                     labelQuestion.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     labelQuestion.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)])
     }
     
     func setMultipleQuestionStack() {
