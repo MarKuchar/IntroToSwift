@@ -76,25 +76,21 @@ class QuizViewController: UIViewController {
     
     let label1: UILabel = {
         let label = UILabel()
-        label.text = "Label"
         return label
     }()
     
     let label2: UILabel = {
         let label = UILabel()
-        label.text = "Label"
         return label
     }()
     
     let label3: UILabel = {
         let label = UILabel()
-        label.text = "Label"
         return label
     }()
     
     let label4: UILabel = {
         let label = UILabel()
-        label.text = "Label"
         return label
     }()
     
@@ -122,7 +118,7 @@ class QuizViewController: UIViewController {
         let vView = UIStackView()
         vView.translatesAutoresizingMaskIntoConstraints = false
         vView.axis = .vertical
-        vView.alignment = .center
+        vView.alignment = .leading
         vView.distribution = .equalSpacing
         vView.spacing = 20
         return vView
@@ -132,19 +128,17 @@ class QuizViewController: UIViewController {
         let btn = UIButton(type: .system)
         btn.setTitle("Submit Answer", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.tag = 2
+        btn.addTarget(self, action: #selector(answerMultipleQuestion), for: .touchUpInside)
         return btn
     }()
     
     let labelSlider1: UILabel = {
         let label = UILabel()
-        label.text = "Label"
         return label
     }()
     
     let labelSlider2: UILabel = {
         let label = UILabel()
-        label.text = "Label"
         return label
     }()
     
@@ -152,6 +146,8 @@ class QuizViewController: UIViewController {
         let slider = UISlider()
         slider.widthAnchor.constraint(equalToConstant: 300).isActive = true
         slider.tintColor = .green
+        slider.minimumValue = 0
+        slider.maximumValue = 1
         return slider
     }()
     
@@ -258,6 +254,7 @@ class QuizViewController: UIViewController {
     func setMultipleQuestionStack(answer: [Answer]) {
         vView2.isHidden = false
         vView3.isHidden = false
+        btnSubmit.isHidden = false
         NSLayoutConstraint.activate([vView2.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      vView2.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
                                      vView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
@@ -272,6 +269,8 @@ class QuizViewController: UIViewController {
         label2.text = answer[1].text
         label3.text = answer[2].text
         label4.text = answer[3].text
+        
+        addProperties2()
     }
 
     func setSingleQuestionStack(answer: [Answer]) {
@@ -280,6 +279,7 @@ class QuizViewController: UIViewController {
                                      vView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
                                      vView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
+        
         btn1.setTitle(answer[0].text, for: .normal)
         btn2.setTitle(answer[1].text, for: .normal)
         btn3.setTitle(answer[2].text, for: .normal)
@@ -290,15 +290,18 @@ class QuizViewController: UIViewController {
     
     func setSliderStack(answer: [Answer]) {
         vViewSlider.isHidden = false
+        btnSubmit.isHidden = false
         NSLayoutConstraint.activate([vViewSlider.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      vViewSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      vViewSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
                                      vViewSlider.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)])
         vViewSlider.addArrangedSubview(slider)
         vViewSlider.addArrangedSubview(hView)
-        vViewSlider.addArrangedSubview(btnSubmit)
+//        vViewSlider.addArrangedSubview(btnSubmit)
         labelSlider1.text = answer.first?.text
         labelSlider2.text = answer.last?.text
+        
+        setHorizontalStack()
     }
     
     func updateUI() {
@@ -306,6 +309,7 @@ class QuizViewController: UIViewController {
         vView2.isHidden = true
         vView3.isHidden = true
         vViewSlider.isHidden = true
+        btnSubmit.isHidden = true
         
         let currentQuestion = questions[questionIndex]
         let currentAnswer = currentQuestion.answers
@@ -332,33 +336,19 @@ class QuizViewController: UIViewController {
             case 0:
                 print("0")
                 answerChosen.append(currentAnswer[0])
-//                vView.removeFromSuperview()
-//                view.addSubview(vView2)
-//                view.addSubview(vView3)
-//                view.addSubview(btnSubmit)
-//                setMultipleQuestionStack()
-//                addProperties2()
             case 1:
                 print("1")
                 answerChosen.append(currentAnswer[1])
-//                vView2.removeFromSuperview()
-//                vView3.removeFromSuperview()
-//                view.addSubview(vViewSlider)
-//                setHorizontalStack()
-////                setSliderStack()
-//                btnSubmit.tag = 1
             case 2:
                 answerChosen.append(currentAnswer[2])
                 print("2")
             case 3:
                 answerChosen.append(currentAnswer[3])
                 print("3")
-//                let resultController = ResultViewController()
-//                navigationController?.pushViewController(resultController, animated: true)
             default:
                 print("OTHER")
         }
-        
+
         nextQuestion()
     }
     
@@ -380,10 +370,29 @@ class QuizViewController: UIViewController {
             answerChosen.append(currentAnswer[3])
             print("3")
         }
-        
+        btnSubmit.removeTarget(nil, action: nil, for: .allEvents)
+        btnSubmit.addTarget(self, action: #selector(answerSliderQuestion), for: .touchUpInside)
         nextQuestion()
     }
     
+    @objc func answerSliderQuestion() {
+        let currentAnswer = questions[questionIndex].answers
+        let index = Int(round(slider.value * Float(currentAnswer.count - 1)))
+        answerChosen.append(currentAnswer[index])
+        btnSubmit.removeTarget(nil, action: nil, for: .allEvents)
+        btnSubmit.addTarget(self, action: #selector(answerMultipleQuestion), for: .touchUpInside)
+        nextQuestion()
+    }
+     
+    
+    
     func nextQuestion() {
+        questionIndex += 1
+        if questionIndex < questions.count {
+            updateUI()
+        } else {
+            let resultController = ResultViewController()
+            navigationController?.pushViewController(resultController, animated: true)
+        }
     }
 }
