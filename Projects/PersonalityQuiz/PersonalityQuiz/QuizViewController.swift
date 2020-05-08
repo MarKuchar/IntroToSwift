@@ -10,33 +10,43 @@ import UIKit
 
 class QuizViewController: UIViewController {
 
-
+    var questions: [Question] = [Question(text: "What kind of the following food do you like the most?", type: .single, answers: [Answer(text: "Fish", type: .japan), Answer(text: "Donut", type: .canada), Answer(text: "Cheese", type: .slovakia), Answer(text: "Beef", type: .brazil)]),
+                                 Question(text: "What characteristics of people do you prefer?", type: .multiple, answers: [Answer(text: "Generosity", type: .brazil), Answer(text: "Loyalty", type: .japan), Answer(text: "Reliability", type: .slovakia), Answer(text: "Politeness", type: .canada)]),
+                                 Question(text: "What temperature is the most enjoyable for you?", type: .ranged, answers: [Answer(text: "30", type: .brazil), Answer(text: "25", type: .japan), Answer(text: "20", type: .slovakia), Answer(text: "15", type: .canada)])]
+    
+    var questionIndex = 0
+    
+    var answerChosen: [Answer] = []
+    
     let btn1: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Button", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.tag = 1
+        btn.addTarget(self, action: #selector(answerSingleQuestion), for: .touchUpInside)
+        btn.tag = 0
         return btn
     }()
     
     let btn2: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Button", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(answerSingleQuestion), for: .touchUpInside)
+        btn.tag = 1
         return btn
     }()
     
     let btn3: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Button", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(answerSingleQuestion), for: .touchUpInside)
+        btn.tag = 2
         return btn
     }()
     
     let btn4: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Button", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(answerSingleQuestion), for: .touchUpInside)
+        btn.tag = 3
         return btn
     }()
     
@@ -92,7 +102,7 @@ class QuizViewController: UIViewController {
         let vView = UIStackView()
         vView.translatesAutoresizingMaskIntoConstraints = false
         vView.axis = .vertical
-        vView.alignment = .center
+        vView.alignment = .leading
         vView.distribution = .equalSpacing
         vView.spacing = 20
         return vView
@@ -102,7 +112,7 @@ class QuizViewController: UIViewController {
         let vView = UIStackView()
         vView.translatesAutoresizingMaskIntoConstraints = false
         vView.axis = .vertical
-        vView.alignment = .center
+        vView.alignment = .leading
         vView.distribution = .equalSpacing
         vView.spacing = 20
         return vView
@@ -169,6 +179,7 @@ class QuizViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Current Q"
+        label.numberOfLines = 4
         label.textAlignment = .center
         return label
     }()
@@ -189,15 +200,24 @@ class QuizViewController: UIViewController {
 //        let nav = UINavigationController(rootViewController: self)
 //        self.navigationController?.present(nav, animated: true, completion: nil)
         navigationItem.title = "Questions"
+        
         view.addSubview(vView)
+        
+        view.addSubview(vView2)
+        view.addSubview(vView3)
+        view.addSubview(btnSubmit)
+        
+        view.addSubview(vViewSlider)
+        view.addSubview(labelSlider1)
+        view.addSubview(labelSlider2)
+        
         view.addSubview(labelQuestion)
         view.addSubview(progressView)
-        btn1.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
-        btnSubmit.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
-        setSingleQuestionStack(vView)
-        addProperties()
+        
+//        btnSubmit.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
         setConstrainsQuestionLabel()
         setProggressViewConstraints()
+        updateUI()
     }
     
     func addProperties() {
@@ -230,27 +250,46 @@ class QuizViewController: UIViewController {
                                      progressView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)])
     }
     
-    func setMultipleQuestionStack() {
+    func setHorizontalStack() {
+         hView.addArrangedSubview(labelSlider1)
+         hView.addArrangedSubview(labelSlider2)
+     }
+    
+    func setMultipleQuestionStack(answer: [Answer]) {
+        vView2.isHidden = false
+        vView3.isHidden = false
         NSLayoutConstraint.activate([vView2.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      vView2.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
                                      vView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
+        NSLayoutConstraint.activate([vView3.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                                     vView3.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+                                     vView3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
         NSLayoutConstraint.activate([btnSubmit.centerXAnchor.constraint(equalTo: view.centerXAnchor), btnSubmit.topAnchor.constraint(equalTo: vView2.bottomAnchor, constant: 20)])
+        
+        label1.text = answer[0].text
+        label2.text = answer[1].text
+        label3.text = answer[2].text
+        label4.text = answer[3].text
     }
 
-    func setSingleQuestionStack(_ sView: UIStackView) {
-        NSLayoutConstraint.activate([sView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     sView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
-                                     sView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+    func setSingleQuestionStack(answer: [Answer]) {
+        vView.isHidden = false
+        NSLayoutConstraint.activate([vView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                                     vView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+                                     vView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
+        btn1.setTitle(answer[0].text, for: .normal)
+        btn2.setTitle(answer[1].text, for: .normal)
+        btn3.setTitle(answer[2].text, for: .normal)
+        btn4.setTitle(answer[3].text, for: .normal)
+        
+        addProperties()
     }
     
-    func setHorizontalStack() {
-        hView.addArrangedSubview(labelSlider1)
-        hView.addArrangedSubview(labelSlider2)
-    }
-    
-    func setSliderStack() {
+    func setSliderStack(answer: [Answer]) {
+        vViewSlider.isHidden = false
         NSLayoutConstraint.activate([vViewSlider.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      vViewSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      vViewSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
@@ -258,31 +297,93 @@ class QuizViewController: UIViewController {
         vViewSlider.addArrangedSubview(slider)
         vViewSlider.addArrangedSubview(hView)
         vViewSlider.addArrangedSubview(btnSubmit)
+        labelSlider1.text = answer.first?.text
+        labelSlider2.text = answer.last?.text
     }
     
-    @objc func uninstall(_ sender: UIButton) {
-        switch sender.tag {
-            case 1:
-                vView.removeFromSuperview()
-                view.addSubview(vView2)
-                view.addSubview(vView3)
-                view.addSubview(btnSubmit)
-                setSingleQuestionStack(vView3)
-                setMultipleQuestionStack()
-                addProperties2()
+    func updateUI() {
+        vView.isHidden = true
+        vView2.isHidden = true
+        vView3.isHidden = true
+        vViewSlider.isHidden = true
         
+        let currentQuestion = questions[questionIndex]
+        let currentAnswer = currentQuestion.answers
+        
+        navigationItem.title = "Question #\(questionIndex + 1)"
+        let totalProgress = Float(questionIndex) /
+                Float(questions.count)
+        labelQuestion.text = currentQuestion.text
+        progressView.setProgress(totalProgress, animated: true)
+        
+        switch currentQuestion.type {
+            case .single:
+                setSingleQuestionStack(answer: currentAnswer)
+            case .multiple:
+                setMultipleQuestionStack(answer: currentAnswer)
+            case .ranged:
+                setSliderStack(answer: currentAnswer)
+        }
+    }
+    
+    @objc func answerSingleQuestion(_ sender: UIButton) {
+        let currentAnswer = questions[questionIndex].answers
+        switch sender.tag {
+            case 0:
+                print("0")
+                answerChosen.append(currentAnswer[0])
+//                vView.removeFromSuperview()
+//                view.addSubview(vView2)
+//                view.addSubview(vView3)
+//                view.addSubview(btnSubmit)
+//                setMultipleQuestionStack()
+//                addProperties2()
+            case 1:
+                print("1")
+                answerChosen.append(currentAnswer[1])
+//                vView2.removeFromSuperview()
+//                vView3.removeFromSuperview()
+//                view.addSubview(vViewSlider)
+//                setHorizontalStack()
+////                setSliderStack()
+//                btnSubmit.tag = 1
             case 2:
-                vView2.removeFromSuperview()
-                vView3.removeFromSuperview()
-                view.addSubview(vViewSlider)
-                setHorizontalStack()
-                setSliderStack()
-                btnSubmit.tag = 3
+                answerChosen.append(currentAnswer[2])
+                print("2")
             case 3:
-                let resultController = ResultViewController()
-                navigationController?.pushViewController(resultController, animated: true)
+                answerChosen.append(currentAnswer[3])
+                print("3")
+//                let resultController = ResultViewController()
+//                navigationController?.pushViewController(resultController, animated: true)
             default:
                 print("OTHER")
         }
+        
+        nextQuestion()
+    }
+    
+    @objc func answerMultipleQuestion() {
+        let currentAnswer = questions[questionIndex].answers
+        if sbtn1.isOn {
+            answerChosen.append(currentAnswer[0])
+            print("0")
+        }
+        if sbtn2.isOn {
+            print("1")
+            answerChosen.append(currentAnswer[1])
+        }
+        if sbtn3.isOn {
+            answerChosen.append(currentAnswer[2])
+            print("2")
+        }
+        if sbtn4.isOn {
+            answerChosen.append(currentAnswer[3])
+            print("3")
+        }
+        
+        nextQuestion()
+    }
+    
+    func nextQuestion() {
     }
 }
