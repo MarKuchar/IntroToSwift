@@ -196,7 +196,14 @@ class QuizViewController: UIViewController {
 //        let nav = UINavigationController(rootViewController: self)
 //        self.navigationController?.present(nav, animated: true, completion: nil)
         navigationItem.title = "Questions"
-        
+        setConstrainsQuestionLabel()
+        setProggressViewConstraints()
+        updateUI()
+    }
+    
+/// Functions to add subviews
+    
+    func addViews() {
         view.addSubview(vView)
         
         view.addSubview(vView2)
@@ -209,11 +216,6 @@ class QuizViewController: UIViewController {
         
         view.addSubview(labelQuestion)
         view.addSubview(progressView)
-        
-//        btnSubmit.addTarget(self, action: #selector(uninstall), for: .touchUpInside)
-        setConstrainsQuestionLabel()
-        setProggressViewConstraints()
-        updateUI()
     }
     
     func addProperties() {
@@ -234,6 +236,13 @@ class QuizViewController: UIViewController {
         vView3.addArrangedSubview(label4)
     }
     
+    func setHorizontalStack() {
+           hView.addArrangedSubview(labelSlider1)
+           hView.addArrangedSubview(labelSlider2)
+       }
+    
+/// Functions to set constrants
+    
     func setConstrainsQuestionLabel() {
         NSLayoutConstraint.activate([labelQuestion.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
                                      labelQuestion.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -246,10 +255,7 @@ class QuizViewController: UIViewController {
                                      progressView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)])
     }
     
-    func setHorizontalStack() {
-         hView.addArrangedSubview(labelSlider1)
-         hView.addArrangedSubview(labelSlider2)
-     }
+/// Functions UI
     
     func setMultipleQuestionStack(answer: [Answer]) {
         vView2.isHidden = false
@@ -297,10 +303,8 @@ class QuizViewController: UIViewController {
                                      vViewSlider.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)])
         vViewSlider.addArrangedSubview(slider)
         vViewSlider.addArrangedSubview(hView)
-//        vViewSlider.addArrangedSubview(btnSubmit)
         labelSlider1.text = answer.first?.text
         labelSlider2.text = answer.last?.text
-        
         setHorizontalStack()
     }
     
@@ -329,6 +333,9 @@ class QuizViewController: UIViewController {
                 setSliderStack(answer: currentAnswer)
         }
     }
+    
+    
+/// Messenger functions
     
     @objc func answerSingleQuestion(_ sender: UIButton) {
         let currentAnswer = questions[questionIndex].answers
@@ -384,14 +391,13 @@ class QuizViewController: UIViewController {
         nextQuestion()
     }
      
-    
-    
     func nextQuestion() {
         questionIndex += 1
         if questionIndex < questions.count {
             updateUI()
         } else {
             let resultController = ResultViewController()
+            resultController.responses = answerChosen
             navigationController?.pushViewController(resultController, animated: true)
         }
     }

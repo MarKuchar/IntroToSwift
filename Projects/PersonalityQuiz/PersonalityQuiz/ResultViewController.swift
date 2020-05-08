@@ -10,6 +10,8 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
+    var responses: [Answer]!
+
     let result: UILabel = {
         let result = UILabel()
         result.text = "Next country you should go visit is:"
@@ -18,8 +20,7 @@ class ResultViewController: UIViewController {
     }()
     
     let imageView: UIImageView = {
-        let image =  UIImage(named: "Slovakia")
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView()
         NSLayoutConstraint.activate([imageView.heightAnchor.constraint(equalToConstant: 100),
                                      imageView.widthAnchor.constraint(equalToConstant: 100)])
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,8 +29,8 @@ class ResultViewController: UIViewController {
     
     let descriptionOfCoutry: UILabel = {
         let description = UILabel()
-        description.text = "Beautiful country in the hearth of Europe"
         description.translatesAutoresizingMaskIntoConstraints = false
+        description.numberOfLines = 10
         return description
     }()
     
@@ -51,6 +52,7 @@ class ResultViewController: UIViewController {
         
         view.addSubview(vViewResult)
         setViewResultStack()
+        calculatePersonalityResult()
     }
     
     @objc func goBack(_ sender: UIBarButtonItem) {
@@ -65,5 +67,24 @@ class ResultViewController: UIViewController {
         vViewResult.addArrangedSubview(result)
         vViewResult.addArrangedSubview(imageView)
         vViewResult.addArrangedSubview(descriptionOfCoutry)
+    }
+    
+    func calculatePersonalityResult() {
+        var frequencyOfAnswers: [Answer.CountryType: Int] = [:]
+        let responseTypes = responses.map { $0.type }
+        for response in responseTypes {
+            let newCount: Int
+            if let oldCount = frequencyOfAnswers[response] {
+                newCount = oldCount + 1
+            } else {
+                newCount = 1
+            }
+            frequencyOfAnswers[response] = newCount
+        }
+        let mostCommonAnswer = frequencyOfAnswers.sorted { $0.1 >
+        $1.1 }.first!.key
+        
+        imageView.image = mostCommonAnswer.image
+        descriptionOfCoutry.text = mostCommonAnswer.definition
     }
 }
