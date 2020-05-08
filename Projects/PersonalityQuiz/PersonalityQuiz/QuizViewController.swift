@@ -12,7 +12,13 @@ class QuizViewController: UIViewController {
 
     var questions: [Question] = [Question(text: "What kind of the following food do you like the most?", type: .single, answers: [Answer(text: "Fish", type: .japan), Answer(text: "Donut", type: .canada), Answer(text: "Cheese", type: .slovakia), Answer(text: "Beef", type: .brazil)]),
                                  Question(text: "What characteristics of people do you prefer?", type: .multiple, answers: [Answer(text: "Generosity", type: .brazil), Answer(text: "Loyalty", type: .japan), Answer(text: "Reliability", type: .slovakia), Answer(text: "Politeness", type: .canada)]),
-                                 Question(text: "What temperature is the most enjoyable for you?", type: .ranged, answers: [Answer(text: "30", type: .brazil), Answer(text: "25", type: .japan), Answer(text: "20", type: .slovakia), Answer(text: "15", type: .canada)])]
+                                 Question(text: "What temperature is the most enjoyable for you?", type: .ranged, answers: [Answer(text: "35°C", type: .brazil), Answer(text: "25°C", type: .japan), Answer(text: "20°C", type: .slovakia), Answer(text: "10°C", type: .canada)]),
+                                 Question(text: "Do you like nature?", type: .ranged, answers: [Answer(text: "100%", type: .canada), Answer(text: "70%", type: .brazil), Answer(text: "40%", type: .slovakia), Answer(text: "0%", type: .japan)]),
+                                 Question(text: "Do you like city?", type: .ranged, answers: [Answer(text: "100%", type: .japan), Answer(text: "70%", type: .canada), Answer(text: "40%", type: .brazil), Answer(text: "0%", type: .slovakia)]),
+                                 Question(text: "What season do you want to go travel", type: .single, answers: [Answer(text: "Spring", type: .japan), Answer(text: "Autumn", type: .slovakia), Answer(text: "Winter", type: .brazil), Answer(text: "Summer", type: .canada)]),
+                                 Question(text: "What is your favourite sport", type: .single, answers: [Answer(text: "Baseball", type: .japan), Answer(text: "Cycling", type: .slovakia), Answer(text: "Football", type: .brazil), Answer(text: "Hockey", type: .canada)]),
+                                 Question(text: "How much do you want to spend?", type: .ranged, answers: [Answer(text: "$4000", type: .japan), Answer(text: "$3000", type: .canada), Answer(text: "$2000", type: .slovakia), Answer(text: "$1000", type: .brazil)]),
+                                 Question(text: "What continent you have never visited yet??", type: .multiple, answers: [Answer(text: "North America", type: .canada), Answer(text: "Europa", type: .slovakia), Answer(text: "South America", type: .brazil), Answer(text: "Asia", type: .japan)])]
     
     var questionIndex = 0
     
@@ -193,6 +199,7 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addViews()
 //        let nav = UINavigationController(rootViewController: self)
 //        self.navigationController?.present(nav, animated: true, completion: nil)
         navigationItem.title = "Questions"
@@ -295,6 +302,7 @@ class QuizViewController: UIViewController {
     }
     
     func setSliderStack(answer: [Answer]) {
+        slider.setValue(0, animated: false)
         vViewSlider.isHidden = false
         btnSubmit.isHidden = false
         NSLayoutConstraint.activate([vViewSlider.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -303,8 +311,8 @@ class QuizViewController: UIViewController {
                                      vViewSlider.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)])
         vViewSlider.addArrangedSubview(slider)
         vViewSlider.addArrangedSubview(hView)
-        labelSlider1.text = answer.first?.text
-        labelSlider2.text = answer.last?.text
+        labelSlider1.text = answer.last?.text
+        labelSlider2.text = answer.first?.text
         setHorizontalStack()
     }
     
@@ -341,17 +349,13 @@ class QuizViewController: UIViewController {
         let currentAnswer = questions[questionIndex].answers
         switch sender.tag {
             case 0:
-                print("0")
                 answerChosen.append(currentAnswer[0])
             case 1:
-                print("1")
                 answerChosen.append(currentAnswer[1])
             case 2:
                 answerChosen.append(currentAnswer[2])
-                print("2")
             case 3:
                 answerChosen.append(currentAnswer[3])
-                print("3")
             default:
                 print("OTHER")
         }
@@ -363,19 +367,19 @@ class QuizViewController: UIViewController {
         let currentAnswer = questions[questionIndex].answers
         if sbtn1.isOn {
             answerChosen.append(currentAnswer[0])
-            print("0")
+            sbtn1.isOn = false
         }
         if sbtn2.isOn {
-            print("1")
             answerChosen.append(currentAnswer[1])
+            sbtn2.isOn = false
         }
         if sbtn3.isOn {
             answerChosen.append(currentAnswer[2])
-            print("2")
+            sbtn3.isOn = false
         }
         if sbtn4.isOn {
             answerChosen.append(currentAnswer[3])
-            print("3")
+            sbtn4.isOn = false
         }
         btnSubmit.removeTarget(nil, action: nil, for: .allEvents)
         btnSubmit.addTarget(self, action: #selector(answerSliderQuestion), for: .touchUpInside)
