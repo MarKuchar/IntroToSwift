@@ -14,7 +14,10 @@ class ResultViewController: UIViewController {
 
     let result: UILabel = {
         let result = UILabel()
-        result.text = "Next country you should go visit is:"
+        result.text = "The country you should visit next is:"
+        result.numberOfLines = 2
+        result.textAlignment = .center
+        result.font = UIFont(name: "HelveticaNeue", size: 25)
         result.translatesAutoresizingMaskIntoConstraints = false
         return result
     }()
@@ -47,7 +50,7 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.title = "RESULTS"
+        navigationItem.title = "RESULT"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(goBack))
         
         view.addSubview(vViewResult)

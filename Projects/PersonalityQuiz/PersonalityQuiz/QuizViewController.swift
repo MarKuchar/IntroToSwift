@@ -11,14 +11,14 @@ import UIKit
 class QuizViewController: UIViewController {
 
     var questions: [Question] = [Question(text: "What kind of the following food do you like the most?", type: .single, answers: [Answer(text: "Fish", type: .japan), Answer(text: "Donut", type: .canada), Answer(text: "Cheese", type: .slovakia), Answer(text: "Beef", type: .brazil)]),
-                                 Question(text: "What characteristics of people do you prefer?", type: .multiple, answers: [Answer(text: "Generosity", type: .brazil), Answer(text: "Loyalty", type: .japan), Answer(text: "Reliability", type: .slovakia), Answer(text: "Politeness", type: .canada)]),
+                                 Question(text: "In which country do you have friend?", type: .multiple, answers: [Answer(text: "Brazil", type: .brazil), Answer(text: "Japan", type: .japan), Answer(text: "Slovakia", type: .slovakia), Answer(text: "Canada", type: .canada)]),
                                  Question(text: "What temperature is the most enjoyable for you?", type: .ranged, answers: [Answer(text: "35°C", type: .brazil), Answer(text: "25°C", type: .japan), Answer(text: "20°C", type: .slovakia), Answer(text: "10°C", type: .canada)]),
-                                 Question(text: "Do you like nature?", type: .ranged, answers: [Answer(text: "100%", type: .canada), Answer(text: "70%", type: .brazil), Answer(text: "40%", type: .slovakia), Answer(text: "0%", type: .japan)]),
-                                 Question(text: "Do you like city?", type: .ranged, answers: [Answer(text: "100%", type: .japan), Answer(text: "70%", type: .canada), Answer(text: "40%", type: .brazil), Answer(text: "0%", type: .slovakia)]),
-                                 Question(text: "What season do you want to go travel", type: .single, answers: [Answer(text: "Spring", type: .japan), Answer(text: "Autumn", type: .slovakia), Answer(text: "Winter", type: .brazil), Answer(text: "Summer", type: .canada)]),
-                                 Question(text: "What is your favourite sport", type: .single, answers: [Answer(text: "Baseball", type: .japan), Answer(text: "Cycling", type: .slovakia), Answer(text: "Football", type: .brazil), Answer(text: "Hockey", type: .canada)]),
+                                 Question(text: "How much do you like nature?", type: .ranged, answers: [Answer(text: "100%", type: .canada), Answer(text: "70%", type: .brazil), Answer(text: "40%", type: .slovakia), Answer(text: "0%", type: .japan)]),
+                                 Question(text: "How much do you like city?", type: .ranged, answers: [Answer(text: "100%", type: .japan), Answer(text: "70%", type: .canada), Answer(text: "40%", type: .brazil), Answer(text: "0%", type: .slovakia)]),
+                                 Question(text: "What season do you want to travel?", type: .single, answers: [Answer(text: "Spring", type: .japan), Answer(text: "Autumn", type: .slovakia), Answer(text: "Winter", type: .brazil), Answer(text: "Summer", type: .canada)]),
+                                 Question(text: "What is your favourite sport?", type: .single, answers: [Answer(text: "Baseball", type: .japan), Answer(text: "Cycling", type: .slovakia), Answer(text: "Soccer", type: .brazil), Answer(text: "Hockey", type: .canada)]),
                                  Question(text: "How much do you want to spend?", type: .ranged, answers: [Answer(text: "$4000", type: .japan), Answer(text: "$3000", type: .canada), Answer(text: "$2000", type: .slovakia), Answer(text: "$1000", type: .brazil)]),
-                                 Question(text: "What continent you have never visited yet??", type: .multiple, answers: [Answer(text: "North America", type: .canada), Answer(text: "Europa", type: .slovakia), Answer(text: "South America", type: .brazil), Answer(text: "Asia", type: .japan)])]
+                                 Question(text: "What continent you have never visited yet?", type: .multiple, answers: [Answer(text: "North America", type: .canada), Answer(text: "Europa", type: .slovakia), Answer(text: "South America", type: .brazil), Answer(text: "Asia", type: .japan)])]
     
     var questionIndex = 0
     
@@ -180,6 +180,7 @@ class QuizViewController: UIViewController {
     let labelQuestion: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "HelveticaNeue", size: 20)
         label.text = "Current Q"
         label.numberOfLines = 4
         label.textAlignment = .center
@@ -248,7 +249,7 @@ class QuizViewController: UIViewController {
            hView.addArrangedSubview(labelSlider2)
        }
     
-/// Functions to set constrants
+/// Functions to set user interface
     
     func setConstrainsQuestionLabel() {
         NSLayoutConstraint.activate([labelQuestion.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
@@ -261,8 +262,6 @@ class QuizViewController: UIViewController {
                                      progressView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
                                      progressView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)])
     }
-    
-/// Functions UI
     
     func setMultipleQuestionStack(answer: [Answer]) {
         vView2.isHidden = false
@@ -307,7 +306,7 @@ class QuizViewController: UIViewController {
         btnSubmit.isHidden = false
         NSLayoutConstraint.activate([vViewSlider.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      vViewSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     vViewSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.15),
+                                     vViewSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.08),
                                      vViewSlider.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)])
         vViewSlider.addArrangedSubview(slider)
         vViewSlider.addArrangedSubview(hView)

@@ -20,7 +20,9 @@ class ViewController: UIViewController {
     let quizTittle: UILabel = {
         let tittle = UILabel()
         tittle.translatesAutoresizingMaskIntoConstraints = false
-        tittle.text =  "What country you should visit to next?"
+        tittle.font = UIFont(name: "HelveticaNeue", size: 20)
+        tittle.text =  "What country you should visit for your next trip?"
+        tittle.numberOfLines = 2
         tittle.textAlignment = .center
         return tittle
     }()
@@ -102,7 +104,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      stackView.widthAnchor.constraint(equalToConstant: 200),
-                                     stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05),
+                                     stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
                                      quizTittle.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)])
         
         NSLayoutConstraint.activate([svkImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
