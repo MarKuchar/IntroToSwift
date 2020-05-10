@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TipCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aex-Fa-FQT">
+                                <rect key="frame" x="20" y="44" width="394" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="155" translatesAutoresizingMaskIntoConstraints="NO" id="TjK-ns-rVX">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="957.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="155" translatesAutoresizingMaskIntoConstraints="NO" id="Wal-2v-AC5">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="957.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-l1-s3k">
+                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-q7-BEX">
+                                                        <rect key="frame" x="0.0" y="175.5" width="160" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohf-01-p9W">
+                                                        <rect key="frame" x="0.0" y="364.5" width="160" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter tip percentage" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08R-fQ-tGJ" userLabel="Percentage Text Field">
+                                                        <rect key="frame" x="0.0" y="553.5" width="160" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="I0B-Ca-mcr">
+                                                        <rect key="frame" x="-2" y="742.5" width="164" height="31"/>
+                                                    </slider>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DA-dg-MSk">
+                                                        <rect key="frame" x="0.0" y="927.5" width="160" height="30"/>
+                                                        <state key="normal" title="Calculate Tip"/>
+                                                        <connections>
+                                                            <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ldT-h5-xVb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Wal-2v-AC5" firstAttribute="leading" secondItem="TjK-ns-rVX" secondAttribute="leading" id="4AE-tH-zG6"/>
+                                            <constraint firstItem="Wal-2v-AC5" firstAttribute="top" secondItem="TjK-ns-rVX" secondAttribute="top" id="HEN-nG-Nyq"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wal-2v-AC5" secondAttribute="trailing" id="Sdj-3f-TBP"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wal-2v-AC5" secondAttribute="bottom" id="Zu7-Zn-fuQ"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DOm-SW-nrA" firstAttribute="trailing" secondItem="TjK-ns-rVX" secondAttribute="trailing" id="1QX-fl-BJo"/>
+                                    <constraint firstItem="DOm-SW-nrA" firstAttribute="bottom" secondItem="TjK-ns-rVX" secondAttribute="bottom" id="DwI-HM-1VC"/>
+                                    <constraint firstItem="TjK-ns-rVX" firstAttribute="leading" secondItem="DOm-SW-nrA" secondAttribute="leading" id="btL-gl-NYH"/>
+                                    <constraint firstItem="TjK-ns-rVX" firstAttribute="top" secondItem="DOm-SW-nrA" secondAttribute="top" id="tbc-ee-57I"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DOm-SW-nrA"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Wno-kQ-soJ"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Jsd-rj-pBt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Aex-Fa-FQT" secondAttribute="trailing" constant="20" id="pSe-YD-vUP"/>
+                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="pf9-TS-alF"/>
+                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="r5G-gO-vhW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="billAmountTextField" destination="v8a-q7-BEX" id="Chw-SX-LMD"/>
+                        <outlet property="scrollView" destination="Aex-Fa-FQT" id="TIN-tU-fe2"/>
+                        <outlet property="tipAmountLabel" destination="rr9-l1-s3k" id="FO0-CN-1aG"/>
+                        <outlet property="tipPercentageTextField" destination="08R-fQ-tGJ" id="iI6-Jz-s4r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
