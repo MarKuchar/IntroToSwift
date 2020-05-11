@@ -10,30 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var tipPercentage = 0.15
+    var tipPercentage: Double = 0
+    
     @IBOutlet var billAmountTextField: UITextField!
     
-    @IBOutlet var tipPercentageTextField: UITextField!
+    @IBOutlet var tipTextField: UILabel!
     
     @IBOutlet var tipAmountLabel: UILabel!
     
     @IBOutlet var scrollView: UIScrollView!
     
     @IBAction func calculateTip(_ sender: UIButton) {
-        if let tip = tipPercentageTextField.text {
-            if let percentage = Double(tip) {
-            tipPercentage = percentage / 100
+        if let price = billAmountTextField.text, let priceDollar = Double(price) {
+            tipAmountLabel.text = String(format:"Total price: $ %.1f",priceDollar + priceDollar * tipPercentage)
             }
-        }
-        
-        if let text  = billAmountTextField.text {
-            if let price = Double(text) {
-                self.tipAmountLabel.text = "$ \(price * tipPercentage)"
-            }
-        }
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +41,25 @@ class ViewController: UIViewController {
     let hegiht = frame.cgRectValue.size.height
     scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: hegiht, right: 0)
     }
-
-
+    
+    
+    @IBAction func adjustTipPercentage(_ sender: UISlider) {
+        tipPercentage = Double(sender.value) / 100
+        if let text  = billAmountTextField.text {
+            if let price = Double(text) {
+                tipTextField.text = String(format:"Price with tip: $ %.1f",price * tipPercentage)
+                tipAmountLabel.text = String(format:"Total price: $ %.1f",price + price * tipPercentage)
+            }
+        }
+    }
+    
+    @IBAction func adjustBill(_ sender: Any) {
+        if let price = billAmountTextField.text, let priceDollar = Double(price) {
+                     tipAmountLabel.text = String(format:"Total price: $ %.1f", tipPercentage * priceDollar + priceDollar)
+        }
+    }
+    
+    
+    
 }
 

@@ -17,40 +17,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aex-Fa-FQT">
-                                <rect key="frame" x="13.5" y="44" width="387" height="818"/>
+                                <rect key="frame" x="107" y="44" width="200" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Wal-2v-AC5">
-                                        <rect key="frame" x="0.0" y="250" width="387" height="282.5"/>
+                                        <rect key="frame" x="0.0" y="250" width="200" height="280"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d0r-Rg-E2r">
-                                                <rect key="frame" x="0.0" y="0.0" width="387" height="282.5"/>
+                                            <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="d0r-Rg-E2r">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="280"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-l1-s3k">
-                                                        <rect key="frame" x="181" y="0.0" width="25.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="77.5" y="0.0" width="45" height="37"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-q7-BEX">
-                                                        <rect key="frame" x="125" y="40.5" width="137" height="34"/>
+                                                        <rect key="frame" x="31.5" y="67" width="137" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="adjustBill:" destination="BYZ-38-t0r" eventType="editingChanged" id="P0L-Eu-qqf"/>
+                                                        </connections>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohf-01-p9W">
-                                                        <rect key="frame" x="125" y="94.5" width="137" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter tip percentage" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08R-fQ-tGJ" userLabel="Percentage Text Field">
-                                                        <rect key="frame" x="113.5" y="148.5" width="160" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="I0B-Ca-mcr">
-                                                        <rect key="frame" x="-2" y="202.5" width="391" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-0L-4sg">
+                                                        <rect key="frame" x="71.5" y="131" width="57.5" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="I0B-Ca-mcr">
+                                                        <rect key="frame" x="-2" y="190" width="204" height="31"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="HnI-vm-ZKH"/>
+                                                        </constraints>
+                                                        <color key="thumbTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="adjustTipPercentage:" destination="BYZ-38-t0r" eventType="valueChanged" id="cku-nZ-mae"/>
+                                                        </connections>
                                                     </slider>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DA-dg-MSk">
-                                                        <rect key="frame" x="148.5" y="252.5" width="90" height="30"/>
+                                                        <rect key="frame" x="55" y="250" width="90" height="30"/>
                                                         <state key="normal" title="Calculate Tip"/>
                                                         <connections>
                                                             <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ldT-h5-xVb"/>
@@ -84,7 +90,7 @@
                         <outlet property="billAmountTextField" destination="v8a-q7-BEX" id="Chw-SX-LMD"/>
                         <outlet property="scrollView" destination="Aex-Fa-FQT" id="TIN-tU-fe2"/>
                         <outlet property="tipAmountLabel" destination="rr9-l1-s3k" id="FO0-CN-1aG"/>
-                        <outlet property="tipPercentageTextField" destination="08R-fQ-tGJ" id="iI6-Jz-s4r"/>
+                        <outlet property="tipTextField" destination="xgq-0L-4sg" id="o9D-jV-voX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
