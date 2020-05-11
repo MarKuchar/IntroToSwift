@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,43 +17,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aex-Fa-FQT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="13.5" y="44" width="387" height="818"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="155" translatesAutoresizingMaskIntoConstraints="NO" id="TjK-ns-rVX">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="957.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Wal-2v-AC5">
+                                        <rect key="frame" x="0.0" y="250" width="387" height="282.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="155" translatesAutoresizingMaskIntoConstraints="NO" id="Wal-2v-AC5">
-                                                <rect key="frame" x="0.0" y="0.0" width="400" height="957.5"/>
+                                            <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d0r-Rg-E2r">
+                                                <rect key="frame" x="0.0" y="0.0" width="387" height="282.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rr9-l1-s3k">
-                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="20.5"/>
+                                                        <rect key="frame" x="181" y="0.0" width="25.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v8a-q7-BEX">
-                                                        <rect key="frame" x="0.0" y="175.5" width="400" height="34"/>
+                                                        <rect key="frame" x="125" y="40.5" width="137" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohf-01-p9W">
-                                                        <rect key="frame" x="0.0" y="364.5" width="400" height="34"/>
+                                                        <rect key="frame" x="125" y="94.5" width="137" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter tip percentage" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08R-fQ-tGJ" userLabel="Percentage Text Field">
-                                                        <rect key="frame" x="0.0" y="553.5" width="400" height="34"/>
+                                                        <rect key="frame" x="113.5" y="148.5" width="160" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="I0B-Ca-mcr">
-                                                        <rect key="frame" x="-2" y="742.5" width="404" height="31"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="400" id="hIy-If-xwI"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="-2" y="202.5" width="391" height="31"/>
                                                     </slider>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DA-dg-MSk">
-                                                        <rect key="frame" x="0.0" y="927.5" width="400" height="30"/>
+                                                        <rect key="frame" x="148.5" y="252.5" width="90" height="30"/>
                                                         <state key="normal" title="Calculate Tip"/>
                                                         <connections>
                                                             <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ldT-h5-xVb"/>
@@ -64,10 +62,10 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="TjK-ns-rVX" firstAttribute="bottom" secondItem="DOm-SW-nrA" secondAttribute="bottom" id="I4x-8j-Hvc"/>
-                                    <constraint firstItem="TjK-ns-rVX" firstAttribute="leading" secondItem="DOm-SW-nrA" secondAttribute="leading" id="etb-DF-FsR"/>
-                                    <constraint firstItem="TjK-ns-rVX" firstAttribute="top" secondItem="DOm-SW-nrA" secondAttribute="top" id="gB1-uR-ZBY"/>
-                                    <constraint firstItem="DOm-SW-nrA" firstAttribute="trailing" secondItem="TjK-ns-rVX" secondAttribute="trailing" id="tDN-P5-nD0"/>
+                                    <constraint firstItem="DOm-SW-nrA" firstAttribute="leading" secondItem="Wal-2v-AC5" secondAttribute="leading" id="DOS-rO-w7a"/>
+                                    <constraint firstItem="Wal-2v-AC5" firstAttribute="top" secondItem="DOm-SW-nrA" secondAttribute="top" constant="250" id="SSu-Ao-pYn"/>
+                                    <constraint firstItem="Wal-2v-AC5" firstAttribute="bottom" secondItem="DOm-SW-nrA" secondAttribute="bottom" id="TmI-Ot-U4h"/>
+                                    <constraint firstItem="Wal-2v-AC5" firstAttribute="trailing" secondItem="DOm-SW-nrA" secondAttribute="trailing" id="gQ2-Bj-QLG"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="DOm-SW-nrA"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Wno-kQ-soJ"/>
@@ -75,10 +73,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jsd-rj-pBt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Aex-Fa-FQT" secondAttribute="trailing" id="pSe-YD-vUP"/>
-                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="pf9-TS-alF"/>
-                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="r5G-gO-vhW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Aex-Fa-FQT" secondAttribute="bottom" id="Lvy-tl-2vf"/>
+                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SF4-hG-Qft"/>
+                            <constraint firstItem="Aex-Fa-FQT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YfP-Sn-9GQ"/>
+                            <constraint firstItem="Wal-2v-AC5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="nnd-li-rYq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
