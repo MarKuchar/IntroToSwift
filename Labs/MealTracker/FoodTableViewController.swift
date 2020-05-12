@@ -19,7 +19,7 @@ class FoodTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "foodCell")
+       self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "foodCell")
     }
     
     var meals: [Meal]  {
