@@ -2,6 +2,7 @@
 import UIKit
 
 class BookTableViewController: UITableViewController {
+
     
     struct PropertyKeys {
         static let bookCell = "BookCell"
@@ -9,16 +10,16 @@ class BookTableViewController: UITableViewController {
         static let editBookSegue = "EditBook"
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    
     var books: [Book] = []
     
     var bookArchiveURL: URL {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return documentsURL.appendingPathComponent("books")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +48,7 @@ class BookTableViewController: UITableViewController {
     // MARK: - Navigation
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        guard let source = segue.source as? BookFormViewController,
+        guard let source = segue.source as? BookFormTableViewController,
             let book = source.book else {return}
         
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -60,7 +61,7 @@ class BookTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let bookFormViewController = segue.destination as? BookFormViewController else {return}
+        guard let bookFormViewController = segue.destination as? BookFormTableViewController else {return}
         
         if let indexPath = tableView.indexPathForSelectedRow,
             segue.identifier == PropertyKeys.editBookSegue {
@@ -68,4 +69,11 @@ class BookTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            books.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }
+

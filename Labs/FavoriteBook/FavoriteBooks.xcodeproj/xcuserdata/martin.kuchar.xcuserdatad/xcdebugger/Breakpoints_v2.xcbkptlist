@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8D3F8831-F361-4E74-A166-7DABB118453F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40709019-1560-4B29-96C8-542CEE99E791"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FavoriteBook/BookTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "prepareForUnwind(segue:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FavoriteBook/BookFormTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "BookFormTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - 8d45aade1ce60546"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.bookGenre.getter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - 2b9d60d9c21bd172"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.bookGenre.setter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - f2535062c42d9843"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.bookGenre.modify : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - 5b28e3a744888f27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.bookGenre.modify : Swift.Optional&lt;__C.UITextField&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - 1260ddca0e48fa29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.init(style: __C.UITableViewStyle) -&gt; FavoriteBooks.BookFormTableViewController"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "530">
+               </Location>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - 999079847d9c3f67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; FavoriteBooks.BookFormTableViewController"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "562">
+               </Location>
+               <Location
+                  uuid = "A8026C53-3391-46DD-A98B-04C0B45B7309 - cf1c2e2db53e72f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FavoriteBooks.BookFormTableViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;FavoriteBooks.BookFormTableViewController&gt;"
+                  moduleName = "FavoriteBooks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martin.kuchar/Development/Swift/IntroToSwift/Labs/FavoriteBook/FavoriteBook/BookFormTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "503">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
