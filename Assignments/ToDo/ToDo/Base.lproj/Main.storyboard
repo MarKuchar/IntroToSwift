@@ -57,7 +57,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="plain" systemItem="add" id="gUL-Gy-sfG">
                                 <connections>
-                                    <segue destination="fQW-36-Juy" kind="show" id="vJS-kb-4IS"/>
+                                    <segue destination="nM5-G7-C86" kind="modal" identifier="AddEditTask" id="vJS-kb-4IS"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Delete" style="plain" id="9dN-BB-HaF">
@@ -74,12 +74,12 @@
             </objects>
             <point key="canvasLocation" x="847.82608695652175" y="-85.044642857142847"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Add Detail Table View Controller-->
         <scene sceneID="lDh-aU-tBB">
             <objects>
-                <tableViewController id="fQW-36-Juy" sceneMemberID="viewController">
+                <tableViewController id="fQW-36-Juy" customClass="AddDetailTableViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lr5-kw-zd5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -164,31 +164,29 @@
                             <outlet property="delegate" destination="fQW-36-Juy" id="56i-GF-Y9s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="r3I-bQ-SSt">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="r3I-bQ-SSt">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="DKn-97-fRy"/>
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="OPT-wR-NaV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zCU-lc-TUE">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <segue destination="Jei-MU-Lxk" kind="unwind" unwindAction="unwindToTodo:" id="zsL-JE-riQ"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="fwR-Sb-ICk">
+                            <connections>
+                                <segue destination="cex-sn-cLP" kind="unwind" unwindAction="unwindToTodo:" id="V9t-18-F9o"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" style="plain" id="eDI-h8-wq5">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Ve-xE-dow">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="mDR-ZG-WdJ">
+                            <connections>
+                                <action selector="saveTask:" destination="fQW-36-Juy" id="3lX-0p-m4X"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="taskName" destination="ugl-ig-B3m" id="lZA-mu-hAO"/>
+                        <outlet property="taskPriority" destination="m4C-66-4v5" id="iKY-bK-wod"/>
+                        <outlet property="taskStatus" destination="54B-Vg-6CY" id="wDe-d6-EHQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kuj-iX-r2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Jei-MU-Lxk" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="cex-sn-cLP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2689.8550724637685" y="-85.044642857142847"/>
+            <point key="canvasLocation" x="2555" y="-85"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hwv-vZ-0Xz">
@@ -209,25 +207,22 @@
             <point key="canvasLocation" x="-62.318840579710148" y="-85.044642857142847"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="6Qj-V2-bRT">
+        <scene sceneID="GMk-2R-w5Y">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TPq-cD-739" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nM5-G7-C86" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gQE-rF-d42">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xxa-N4-Yh0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="fQW-36-Juy" kind="relationship" relationship="rootViewController" id="pqU-uX-5rQ"/>
+                        <segue destination="fQW-36-Juy" kind="relationship" relationship="rootViewController" id="HQJ-u5-Uk0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Jd-Un-mft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GSw-Ff-Tb2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1777" y="-85"/>
+            <point key="canvasLocation" x="1700" y="-85"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="vJS-kb-4IS"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -8,8 +8,8 @@
 
 import UIKit
 
-class TodoTableViewController: UITableViewController {
-    
+class TodoTableViewController: UITableViewController, AddDetailTableViewControllerDelegate {
+
     var todoObjects: [Todo] = [
         Todo(title: "Study programming", priority: .heigh, isCompleted: true),
         Todo(title: "Read a book", priority: .low, isCompleted: false),
@@ -30,6 +30,18 @@ class TodoTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToTodo(_ unwindSegue: UIStoryboardSegue)  { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier, identifier == "AddEditTask" {
+            let newTask = (segue.destination as! UINavigationController).topViewController as! AddDetailTableViewController
+            newTask.delegate = self
+        }
+    }
+    
+    func addTask(task: Todo) {
+        sectionSelection[0].tasks.append(task)
+        tableView.insertRows(at: [IndexPath(row: sectionSelection[0].tasks.count - 1, section: 0)], with: .automatic)
+     }
 
     // MARK: - Table view data source
 
@@ -67,8 +79,11 @@ class TodoTableViewController: UITableViewController {
         print("selected")
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+             sectionSelection[indexPath.section].tasks.remove(at: indexPath.row)
+             tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
