@@ -78,6 +78,7 @@ class EmojisTableViewController: UITableViewController, AddEmojiTableViewControl
   // MARK: - table view delegate (behavior)
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.cellForRow(at: indexPath)?.accessoryType = .none
     print("\(emojis[indexPath.row].symbol)")
   }
 

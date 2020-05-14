@@ -10,14 +10,14 @@ import UIKit
 
 class TodoTableViewController: UITableViewController {
     
-    let todoObjects: [Todo] = [
+    var todoObjects: [Todo] = [
         Todo(title: "Study programming", priority: .heigh, isCompleted: true),
         Todo(title: "Read a book", priority: .low, isCompleted: false),
         Todo(title: "Think about the app", priority: .medium, isCompleted: false),
         Todo(title: "Do personal project", priority: .medium, isCompleted: true)
     ]
     
-    let sectionSelection: [Priority] = [
+    var sectionSelection: [Priority] = [
         Priority(tasks: [Todo(title: "Study programming", priority: .heigh, isCompleted: true)]),
         Priority(tasks: [Todo(title: "Think about app", priority: .medium, isCompleted: false),
         Todo(title: "Do personal project", priority: .medium, isCompleted: true)]),
@@ -26,7 +26,10 @@ class TodoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = editButtonItem
     }
+    
+    @IBAction func unwindToTodo(_ unwindSegue: UIStoryboardSegue)  { }
 
     // MARK: - Table view data source
 
@@ -55,5 +58,23 @@ class TodoTableViewController: UITableViewController {
             case .heigh:
                 return "Heigh priority"
         }
+    }
+    
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let taskToMove = sectionSelection[sourceIndexPath.section].tasks.remove(at: sourceIndexPath.row)
+        sectionSelection[destinationIndexPath.section].tasks.insert(taskToMove, at: destinationIndexPath.row)
+        tableView.reloadData()
+        
     }
 }
