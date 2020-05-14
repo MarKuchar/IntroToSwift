@@ -13,7 +13,7 @@ struct Todo {
     let priority: priority
     let isCompleted: Bool
     
-    enum priority {
-        case low, medium, heigh
+    enum priority: Int {
+        case low = 2, medium = 1, heigh = 0
     }
 }

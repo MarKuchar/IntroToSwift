@@ -15,30 +15,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="sig-mt-zPw" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="30.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="11" reuseIdentifier="TodoCell" id="sig-mt-zPw" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="24.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sig-mt-zPw" id="fze-CQ-cKJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="30.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ZBx-84-2IL">
-                                            <rect key="frame" x="10" y="0.0" width="394" height="30.5"/>
+                                            <rect key="frame" x="10" y="0.0" width="394" height="24.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ii8-uV-aJM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="30.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="24.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siQ-7D-42c">
-                                                    <rect key="frame" x="348" y="0.0" width="46" height="30.5"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siQ-7D-42c">
+                                                    <rect key="frame" x="369" y="0.0" width="25" height="24.5"/>
                                                 </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="UOi-Qb-ZSN"/>
-                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -48,6 +44,9 @@
                                         <constraint firstItem="ZBx-84-2IL" firstAttribute="top" secondItem="fze-CQ-cKJ" secondAttribute="top" id="efN-LP-4pi"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="taskLabel" destination="Ii8-uV-aJM" id="Mal-5Z-TEJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -56,7 +55,20 @@
                             <outlet property="delegate" destination="Jnb-eM-bAp" id="Vhs-sx-Fd9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todo Items" largeTitleDisplayMode="always" id="uze-p2-GXY"/>
+                    <navigationItem key="navigationItem" title="Todo Items" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="uze-p2-GXY">
+                        <barButtonItem key="backBarButtonItem" title="Back" style="plain" id="U2b-qN-tVn"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="edit" id="gOQ-rZ-dQF"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="add" id="gUL-Gy-sfG"/>
+                            <barButtonItem title="Delete" style="plain" id="9dN-BB-HaF">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JHP-Vf-lq6">
+                                    <rect key="frame" x="261.5" y="7" width="92" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Delete"/>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxY-aN-V1X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

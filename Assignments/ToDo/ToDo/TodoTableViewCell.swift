@@ -9,7 +9,10 @@
 import UIKit
 
 class TodoTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet var taskLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

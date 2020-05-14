@@ -12,10 +12,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   @IBOutlet var tableView: UITableView!
   
-//  var students: [String] = [
-//    "Cayo", "Aga", "Hermilo", "Tomona", "Leandro", "Melisa", "Carlos", "Martin", "Jiro"
-//  ]
-  
   var emojis: [Emoji] = [
     Emoji(symbol: "😀", name: "Grinning Face", detailDescription: "A typical smiley face.", usage: "happiness"),
     Emoji(symbol: "😕", name: "Confused Face", detailDescription: "A confused, puzzled face.", usage: "unsure what to think; displeasure"),
@@ -41,63 +37,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   override func setEditing(_ editing: Bool, animated: Bool) {
     super.setEditing(editing, animated: animated)
-    tableView.isEditing = editing
+    tableView.setEditing(editing, animated: animated)
   }
   
   // MARK: - table view data source (data)
   
   func numberOfSections(in tableView: UITableView) -> Int {
-//    return 2
     return 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    if section == 0 {
-//      return students.count
-//    }
     return emojis.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    if indexPath.section == 0 {
-//      let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath)
-//      let student = students[indexPath.row]
-//      cell.textLabel?.text = "\(student)"
-//      cell.detailTextLabel?.text = "Software Developer"
-//      return cell
-//    } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath)
-      let emoji = emojis[indexPath.row]
-      cell.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
-      cell.detailTextLabel?.text = "\(emoji.detailDescription)"
-      return cell
-//    }
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath)
+    let emoji = emojis[indexPath.row]
+    cell.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
+    cell.detailTextLabel?.text = "\(emoji.detailDescription)"
+    return cell
+    
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    return section == 0 ? "Employees" : "Emoji Dictionary"
     return "Emoji Dictionary"
   }
   
   // MARK: - table view delegate (behavior)
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    if indexPath.section == 0 {
-//       print("\(students[indexPath.row])")
-//    } else {
-       print("\(emojis[indexPath.row].symbol)")
-//    }
+    print("\(emojis[indexPath.row].symbol)")
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return indexPath.section == 0 ? 44.0 : 80
     return 60
   }
   
   func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     let emojiToMove = emojis.remove(at: sourceIndexPath.row)
     emojis.insert(emojiToMove, at: destinationIndexPath.row)
-    tableView.reloadData()
+    tableView.reloadData() // refresh the whole table view
   }
   
   func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

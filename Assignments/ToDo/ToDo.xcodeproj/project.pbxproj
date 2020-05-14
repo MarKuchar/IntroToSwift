@@ -15,6 +15,7 @@
 		953648C3246CC3290027E8F3 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C2246CC3290027E8F3 /* Todo.swift */; };
 		953648C7246CC6DB0027E8F3 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */; };
 		953648C9246CCC560027E8F3 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */; };
+		953648CB246CF2710027E8F3 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648CA246CF2710027E8F3 /* Priority.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		953648C2246CC3290027E8F3 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		953648CA246CF2710027E8F3 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				953648AE246CBF470027E8F3 /* AppDelegate.swift */,
 				953648B0246CBF470027E8F3 /* SceneDelegate.swift */,
 				953648C2246CC3290027E8F3 /* Todo.swift */,
+				953648CA246CF2710027E8F3 /* Priority.swift */,
 				953648B4246CBF470027E8F3 /* Main.storyboard */,
 				953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */,
 				953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */,
@@ -149,6 +152,7 @@
 				953648B1246CBF470027E8F3 /* SceneDelegate.swift in Sources */,
 				953648C9246CCC560027E8F3 /* TodoTableViewCell.swift in Sources */,
 				953648C3246CC3290027E8F3 /* Todo.swift in Sources */,
+				953648CB246CF2710027E8F3 /* Priority.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

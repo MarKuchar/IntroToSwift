@@ -13,8 +13,15 @@ class TodoTableViewController: UITableViewController {
     let todoObjects: [Todo] = [
         Todo(title: "Study programming", priority: .heigh, isCompleted: true),
         Todo(title: "Read a book", priority: .low, isCompleted: false),
-        Todo(title: "Think about app", priority: .medium, isCompleted: false),
+        Todo(title: "Think about the app", priority: .medium, isCompleted: false),
         Todo(title: "Do personal project", priority: .medium, isCompleted: true)
+    ]
+    
+    let sectionSelection: [Priority] = [
+        Priority(tasks: [Todo(title: "Study programming", priority: .heigh, isCompleted: true)]),
+        Priority(tasks: [Todo(title: "Think about app", priority: .medium, isCompleted: false),
+        Todo(title: "Do personal project", priority: .medium, isCompleted: true)]),
+        Priority(tasks: [Todo(title: "Read a book", priority: .low, isCompleted: false)])
     ]
     
     override func viewDidLoad() {
@@ -25,26 +32,17 @@ class TodoTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return sectionSelection.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return todoObjects.count
+        return sectionSelection[section].tasks.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath)
-        let task = todoObjects[indexPath.row]
-        if indexPath.section == 0 && task.priority == .heigh {
-            cell.textLabel?.text = task.title
-        }
-        if indexPath.section == 1 && task.priority == .medium {
-            cell.textLabel?.text = task.title
-        }
-        if indexPath.section == 2 && task.priority == .low {
-            cell.textLabel?.text = task.title
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
+        let task = sectionSelection[indexPath.section].tasks[indexPath.row]
+        cell.taskLabel.text = task.title
         return cell
     }
     
