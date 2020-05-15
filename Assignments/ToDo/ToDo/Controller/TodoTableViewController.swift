@@ -9,6 +9,8 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController, AddDetailTableViewControllerDelegate {
+    
+    var indexNumber:NSInteger = -1
 
     var todoObjects: [Todo] = [
         Todo(title: "Study programming", priority: .heigh, isCompleted: true),
@@ -19,7 +21,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     
     var sectionSelection: [Priority] = [
         Priority(tasks: [Todo(title: "Study programming", priority: .heigh, isCompleted: true)]),
-        Priority(tasks: [Todo(title: "Think about app", priority: .medium, isCompleted: false),
+        Priority(tasks: [Todo(title: "Think about app Think about app Think about app Think about app Think about app Think about app", priority: .medium, isCompleted: false),
         Todo(title: "Do personal project", priority: .medium, isCompleted: true)]),
         Priority(tasks: [Todo(title: "Read a book", priority: .low, isCompleted: false)])
     ]
@@ -27,6 +29,10 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 50
+        tableView.allowsMultipleSelectionDuringEditing = true
+
     }
     
     @IBAction func unwindToTodo(_ unwindSegue: UIStoryboardSegue)  { }
@@ -43,10 +49,13 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.insertRows(at: [IndexPath(row: sectionSelection[0].tasks.count - 1, section: 0)], with: .automatic)
      }
 
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return sectionSelection.count
     }
 
@@ -76,6 +85,13 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexNumber == indexPath.row {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+          } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+          }
+        
         print("selected")
     }
     
@@ -85,6 +101,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
              tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let taskToMove = sectionSelection[sourceIndexPath.section].tasks.remove(at: sourceIndexPath.row)
