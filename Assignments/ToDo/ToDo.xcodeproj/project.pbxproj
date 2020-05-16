@@ -17,6 +17,8 @@
 		953648C7246CC6DB0027E8F3 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */; };
 		953648C9246CCC560027E8F3 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */; };
 		953648CB246CF2710027E8F3 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648CA246CF2710027E8F3 /* Priority.swift */; };
+		95970FCE246F7842004A47C3 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95970FCD246F7842004A47C3 /* DetailTableViewCell.swift */; };
+		95970FD1246F7BB9004A47C3 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95970FD0246F7BB9004A47C3 /* UIView+ConstraintLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		953648CA246CF2710027E8F3 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		95970FCD246F7842004A47C3 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		95970FD0246F7BB9004A47C3 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */,
+				95970FCD246F7842004A47C3 /* DetailTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -90,6 +95,7 @@
 		953648AD246CBF470027E8F3 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				95970FCF246F7B24004A47C3 /* Utis */,
 				9533435C246DBFEF0077EB93 /* Model */,
 				9533435B246DBFD50077EB93 /* View */,
 				9533435A246DBFBD0077EB93 /* Controller */,
@@ -101,6 +107,14 @@
 				953648BC246CBF4A0027E8F3 /* Info.plist */,
 			);
 			path = ToDo;
+			sourceTree = "<group>";
+		};
+		95970FCF246F7B24004A47C3 /* Utis */ = {
+			isa = PBXGroup;
+			children = (
+				95970FD0246F7BB9004A47C3 /* UIView+ConstraintLayout.swift */,
+			);
+			path = Utis;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,9 +190,11 @@
 			files = (
 				953648C7246CC6DB0027E8F3 /* TodoTableViewController.swift in Sources */,
 				953648AF246CBF470027E8F3 /* AppDelegate.swift in Sources */,
+				95970FCE246F7842004A47C3 /* DetailTableViewCell.swift in Sources */,
 				95334359246DBF8F0077EB93 /* AddDetailTableViewController.swift in Sources */,
 				953648B1246CBF470027E8F3 /* SceneDelegate.swift in Sources */,
 				953648C9246CCC560027E8F3 /* TodoTableViewCell.swift in Sources */,
+				95970FD1246F7BB9004A47C3 /* UIView+ConstraintLayout.swift in Sources */,
 				953648C3246CC3290027E8F3 /* Todo.swift in Sources */,
 				953648CB246CF2710027E8F3 /* Priority.swift in Sources */,
 			);

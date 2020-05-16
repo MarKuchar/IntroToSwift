@@ -35,13 +35,11 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
 
     }
     
-    @IBAction func unwindToTodo(_ unwindSegue: UIStoryboardSegue)  { }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier, identifier == "AddEditTask" {
-            let newTask = (segue.destination as! UINavigationController).topViewController as! AddDetailTableViewController
-            newTask.delegate = self
-        }
+    @IBAction func addNewTask(_ sender: Any) {
+        let newTask = AddDetailTableViewController(style: .grouped)
+        let embedNewTask = UINavigationController(rootViewController: newTask)
+        present(embedNewTask, animated: true, completion: nil)
+        newTask.delegate = self
     }
     
     func addTask(task: Todo) {
@@ -50,9 +48,12 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
      }
 
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-        
+        let detailView = AddDetailTableViewController(style: .grouped)
+        let embedDetaiView = UINavigationController(rootViewController: detailView)
+        present(embedDetaiView, animated: true, completion: nil)
     }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,7 +102,6 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
              tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-    
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let taskToMove = sectionSelection[sourceIndexPath.section].tasks.remove(at: sourceIndexPath.row)
