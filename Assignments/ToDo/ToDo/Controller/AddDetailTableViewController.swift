@@ -10,7 +10,7 @@ import UIKit
 
 class AddDetailTableViewController: UITableViewController {
     
-    private let taskName = DetailTableViewCell(placeholder: "Add new task")
+    var taskName = DetailTableViewCell(placeholder: "Add new task")
     
     var delegate: AddDetailTableViewControllerDelegate?
     
@@ -26,10 +26,9 @@ class AddDetailTableViewController: UITableViewController {
     }
 
     @objc func save(_: UIBarButtonItem) {
-        //        let name  = taskName.text ?? ""
-        //        let task = Todo(title: name, priority: Todo.priority(rawValue: 1)!, isCompleted: false)
-                
-        //        delegate?.addTask(task: task)
+        let name  = taskName.textField.text ?? ""
+        let task = Todo(title: name, priority: Todo.priority(rawValue: 1)!, isCompleted: false)
+        delegate?.addTask(task: task)
         dismiss(animated: true, completion: nil)
     }
     
@@ -52,8 +51,6 @@ class AddDetailTableViewController: UITableViewController {
         return 1
     }
 }
-
-
 
 protocol AddDetailTableViewControllerDelegate {
     func addTask(task: Todo)

@@ -50,6 +50,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let detailView = AddDetailTableViewController(style: .grouped)
         let embedDetaiView = UINavigationController(rootViewController: detailView)
+//        
         present(embedDetaiView, animated: true, completion: nil)
     }
     
@@ -97,6 +98,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
              sectionSelection[indexPath.section].tasks.remove(at: indexPath.row)
              tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -109,4 +111,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.reloadData()
         
     }
+    
+    
+    
 }

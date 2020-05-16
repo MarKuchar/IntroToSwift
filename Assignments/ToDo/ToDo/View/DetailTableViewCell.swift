@@ -10,7 +10,7 @@ import UIKit
 
 class DetailTableViewCell: UITableViewCell {
 
-    private let textField = UITextField()
+    var textField = UITextField()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
