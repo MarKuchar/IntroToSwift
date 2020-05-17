@@ -15,6 +15,7 @@ class TodoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.accessoryType = UITableViewCell.AccessoryType.detailDisclosureButton
         // Initialization code
     }
 

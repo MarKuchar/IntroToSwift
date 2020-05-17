@@ -10,17 +10,17 @@ import UIKit
 
 class TodoTableViewController: UITableViewController, AddDetailTableViewControllerDelegate {
     
-    var indexNumber: NSInteger = -1
+//    var indexNumber: NSInteger = -1
 
     var todoObjects: [Todo] = [
-        Todo(title: "Study programming", priority: .heigh, isCompleted: true),
+        Todo(title: "Study", priority: .heigh, isCompleted: true),
         Todo(title: "Read a book", priority: .low, isCompleted: false),
         Todo(title: "Think about the app", priority: .medium, isCompleted: false),
         Todo(title: "Do personal project", priority: .medium, isCompleted: true)
     ]
     
     var sectionSelection: [Priority] = [
-        Priority(tasks: [Todo(title: "Study programming", priority: .heigh, isCompleted: true)]),
+        Priority(tasks: [Todo(title: "Study", priority: .heigh, isCompleted: true)]),
         Priority(tasks: [Todo(title: "Think about app Think about app Think about app Think about app Think about app Think about app", priority: .medium, isCompleted: false),
         Todo(title: "Do personal project", priority: .medium, isCompleted: true)]),
         Priority(tasks: [Todo(title: "Read a book", priority: .low, isCompleted: false)])
@@ -32,7 +32,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         tableView.allowsMultipleSelectionDuringEditing = true
-        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "foodCell")
 //        let customDetailDisclosureButton = UIButton.init(type: .detailDisclosure)
 //        customDetailDisclosureButton.addTarget(self, action: #selector(tableView.accessoryButtonTapped(sender:)), for: .touchUpInside)
     }
@@ -61,46 +61,20 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     func addTask(task: Todo) {
         sectionSelection[0].tasks.append(task)
         tableView.insertRows(at: [IndexPath(row: sectionSelection[0].tasks.count - 1, section: 0)], with: .automatic)
-     }
-
-    override func tableView(_  tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print(indexPath)
-    
-        
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            print("pressed")
-//        }
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
-//
-//        guard let indexPath = tableView.indexPath(for: cell) else {
-//                   fatalError("The selected cell is not being displayed by the table")
-//               }
-//        let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
-//
-//        let detailView = AddDetailTableViewController(style: .grouped)
-//        let embedDetaiView = UINavigationController(rootViewController: detailView)
-//
-//        print(indexPath.section)
-//        print(indexPath.row)
-//
-//        detailView.taskTitle = title
-//        present(embedDetaiView, animated: true, completion: nil)
     }
-  
     
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print("here")
-//        if segue.identifier == "detailView" {
-//            print("working til now")
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                print("working til now2")
-//            }
-//
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print(indexPath)
+
+        let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
+
+        let detailView = AddDetailTableViewController(style: .grouped)
+        let embedDetaiView = UINavigationController(rootViewController: detailView)
+
+        detailView.taskTitle = title
+        present(embedDetaiView, animated: true, completion: nil)
+    }  
+
     
     
     // MARK: - Table view data source
@@ -116,18 +90,20 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
         let task = sectionSelection[indexPath.section].tasks[indexPath.row]
-        cell.taskLabel.text = task.title
+        cell.taskLabel?.text = task.title
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch todoObjects[section].priority {
-            case .low:
+        switch section {
+            case 2:
                 return "Low priority"
-            case .medium:
+            case 1:
                 return "Medium priority"
-            case .heigh:
+            case 0:
                 return "Heigh priority"
+            default:
+                return "NONE"
         }
     }
     
@@ -136,14 +112,13 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexNumber == indexPath.row {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-            tableView.cellForRow(at: indexPath)?.isSelected = true
+//            tableView.cellForRow(at: indexPath)?.isSelected = true
+            print("bla")
 //        } else {
 //            tableView.cellForRow(at: indexPath)?.accessoryType = .none
 //            tableView.cellForRow(at: indexPath)?.isSelected = false
-          }
-        print("selected")
+//          }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -157,6 +132,7 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         let taskToMove = sectionSelection[sourceIndexPath.section].tasks.remove(at: sourceIndexPath.row)
         sectionSelection[destinationIndexPath.section].tasks.insert(taskToMove, at: destinationIndexPath.row)
         tableView.reloadData()
+        print(sectionSelection)
         
     }
 }
