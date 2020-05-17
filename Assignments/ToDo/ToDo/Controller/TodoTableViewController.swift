@@ -63,8 +63,13 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.insertRows(at: [IndexPath(row: sectionSelection[0].tasks.count - 1, section: 0)], with: .automatic)
      }
 
-//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-//        print("pressed")
+    override func tableView(_  tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print(indexPath)
+    
+        
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//            print("pressed")
+//        }
 //
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
 //
@@ -81,11 +86,21 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
 //
 //        detailView.taskTitle = title
 //        present(embedDetaiView, animated: true, completion: nil)
-//    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
+  
+    
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("here")
+//        if segue.identifier == "detailView" {
+//            print("working til now")
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                print("working til now2")
+//            }
+//
+//        }
+//    }
     
     
     // MARK: - Table view data source

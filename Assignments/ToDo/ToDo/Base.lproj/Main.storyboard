@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="11" reuseIdentifier="TodoCell" id="sig-mt-zPw" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="11" reuseIdentifier="TodoCell" editingAccessoryType="detailDisclosureButton" id="sig-mt-zPw" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="414" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sig-mt-zPw" id="fze-CQ-cKJ">
@@ -43,7 +43,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="taskLabel" destination="Ii8-uV-aJM" id="Mal-5Z-TEJ"/>
-                                    <segue destination="fQW-36-Juy" kind="presentation" id="BbT-IH-Tg4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -78,7 +77,7 @@
             <objects>
                 <tableViewController id="fQW-36-Juy" customClass="AddDetailTableViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lr5-kw-zd5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -224,7 +223,4 @@
             <point key="canvasLocation" x="1700" y="-85"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="BbT-IH-Tg4"/>
-    </inferredMetricsTieBreakers>
 </document>
