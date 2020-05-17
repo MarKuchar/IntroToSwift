@@ -35,13 +35,6 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         
 //        let customDetailDisclosureButton = UIButton.init(type: .detailDisclosure)
 //        customDetailDisclosureButton.addTarget(self, action: #selector(tableView.accessoryButtonTapped(sender:)), for: .touchUpInside)
-
-        
-        
-        
-        
-        
-        
     }
    
     
@@ -58,10 +51,6 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         }
     }
     
-    
-    
-    
-    
     @IBAction func addNewTask(_ sender: Any) {
         let newTask = AddDetailTableViewController(style: .grouped)
         let embedNewTask = UINavigationController(rootViewController: newTask)
@@ -75,24 +64,28 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
      }
 
 //    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-//        print(indexPath.row)
-//        
+//        print("pressed")
+//
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
-//        
+//
 //        guard let indexPath = tableView.indexPath(for: cell) else {
 //                   fatalError("The selected cell is not being displayed by the table")
 //               }
 //        let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
-//    
+//
 //        let detailView = AddDetailTableViewController(style: .grouped)
 //        let embedDetaiView = UINavigationController(rootViewController: detailView)
-//        
+//
 //        print(indexPath.section)
 //        print(indexPath.row)
 //
 //        detailView.taskTitle = title
 //        present(embedDetaiView, animated: true, completion: nil)
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     
     
     // MARK: - Table view data source
