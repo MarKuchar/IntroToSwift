@@ -20,12 +20,10 @@ class DetailTableViewCell: UITableViewCell {
         self.init()
         contentView.addSubview(textField)
         textField.matchParent()
-        textField.placeholder = placeholder
+//        textField.placeholder = placeholder
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
-
 }

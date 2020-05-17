@@ -10,7 +10,7 @@ import UIKit
 
 class TodoTableViewController: UITableViewController, AddDetailTableViewControllerDelegate {
     
-    var indexNumber:NSInteger = -1
+    var indexNumber: NSInteger = -1
 
     var todoObjects: [Todo] = [
         Todo(title: "Study programming", priority: .heigh, isCompleted: true),
@@ -32,8 +32,35 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         tableView.allowsMultipleSelectionDuringEditing = true
+        
+//        let customDetailDisclosureButton = UIButton.init(type: .detailDisclosure)
+//        customDetailDisclosureButton.addTarget(self, action: #selector(tableView.accessoryButtonTapped(sender:)), for: .touchUpInside)
 
+        
+        
+        
+        
+        
+        
     }
+   
+    
+    @IBAction func multipleDeletion(_ sender: Any) {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+//        var taskToDelete = [Todo]()
+        for path in selectedRows {
+//            taskToDelete.append(sectionSelection[path.section].tasks[path.row])
+            sectionSelection[path.section].tasks.remove(at: path.row)
+        }
+        tableView.beginUpdates()
+        tableView.deleteRows(at: selectedRows, with: .automatic)
+        tableView.endUpdates()
+        }
+    }
+    
+    
+    
+    
     
     @IBAction func addNewTask(_ sender: Any) {
         let newTask = AddDetailTableViewController(style: .grouped)
@@ -47,12 +74,25 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.insertRows(at: [IndexPath(row: sectionSelection[0].tasks.count - 1, section: 0)], with: .automatic)
      }
 
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let detailView = AddDetailTableViewController(style: .grouped)
-        let embedDetaiView = UINavigationController(rootViewController: detailView)
+//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        print(indexPath.row)
 //        
-        present(embedDetaiView, animated: true, completion: nil)
-    }
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
+//        
+//        guard let indexPath = tableView.indexPath(for: cell) else {
+//                   fatalError("The selected cell is not being displayed by the table")
+//               }
+//        let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
+//    
+//        let detailView = AddDetailTableViewController(style: .grouped)
+//        let embedDetaiView = UINavigationController(rootViewController: detailView)
+//        
+//        print(indexPath.section)
+//        print(indexPath.row)
+//
+//        detailView.taskTitle = title
+//        present(embedDetaiView, animated: true, completion: nil)
+//    }
     
     
     // MARK: - Table view data source
@@ -90,15 +130,15 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         
         if indexNumber == indexPath.row {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-          } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            tableView.cellForRow(at: indexPath)?.isSelected = true
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//            tableView.cellForRow(at: indexPath)?.isSelected = false
           }
-        
         print("selected")
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
              sectionSelection[indexPath.section].tasks.remove(at: indexPath.row)
              tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -111,7 +151,4 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.reloadData()
         
     }
-    
-    
-    
 }

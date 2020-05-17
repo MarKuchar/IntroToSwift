@@ -14,11 +14,19 @@ class AddDetailTableViewController: UITableViewController {
     
     var delegate: AddDetailTableViewControllerDelegate?
     
+    var taskTitle: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add task"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
+        updateTask()
+    }
+    
+    func updateTask() {
+        guard let taskTitle = taskTitle else { return }
+        taskName.textField.text = taskTitle
     }
     
     @objc func cancel(_: UIBarButtonItem) {
