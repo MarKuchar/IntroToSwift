@@ -33,16 +33,12 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         tableView.estimatedRowHeight = 50
         tableView.allowsMultipleSelectionDuringEditing = true
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "foodCell")
-//        let customDetailDisclosureButton = UIButton.init(type: .detailDisclosure)
-//        customDetailDisclosureButton.addTarget(self, action: #selector(tableView.accessoryButtonTapped(sender:)), for: .touchUpInside)
     }
    
     
     @IBAction func multipleDeletion(_ sender: Any) {
         if let selectedRows = tableView.indexPathsForSelectedRows {
-//        var taskToDelete = [Todo]()
         for path in selectedRows {
-//            taskToDelete.append(sectionSelection[path.section].tasks[path.row])
             sectionSelection[path.section].tasks.remove(at: path.row)
         }
         tableView.beginUpdates()
@@ -65,9 +61,8 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         print(indexPath)
-
+        
         let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
-
         let detailView = AddDetailTableViewController(style: .grouped)
         let embedDetaiView = UINavigationController(rootViewController: detailView)
 
@@ -111,14 +106,11 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .detailDisclosureButton
+        } else {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-//            tableView.cellForRow(at: indexPath)?.isSelected = true
-            print("bla")
-//        } else {
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-//            tableView.cellForRow(at: indexPath)?.isSelected = false
-//          }
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
