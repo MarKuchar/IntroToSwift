@@ -62,16 +62,14 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         print(indexPath)
         
-        let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
-        let detailView = AddDetailTableViewController(style: .grouped)
-        let embedDetaiView = UINavigationController(rootViewController: detailView)
-
-        detailView.taskTitle = title
-        present(embedDetaiView, animated: true, completion: nil)
+//        let title = sectionSelection[indexPath.section].tasks[indexPath.row].title
+//        let detailView = AddDetailTableViewController(style: .grouped)
+//        let embedDetaiView = UINavigationController(rootViewController: detailView)
+//
+//        detailView.taskTitle = title
+//        present(embedDetaiView, animated: true, completion: nil)
     }  
 
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,7 +100,6 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
         }
     }
     
-    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -121,10 +118,9 @@ class TodoTableViewController: UITableViewController, AddDetailTableViewControll
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        tableView.cellForRow(at: sourceIndexPath)?.accessoryType = .none
         let taskToMove = sectionSelection[sourceIndexPath.section].tasks.remove(at: sourceIndexPath.row)
         sectionSelection[destinationIndexPath.section].tasks.insert(taskToMove, at: destinationIndexPath.row)
         tableView.reloadData()
-        print(sectionSelection)
-        
     }
 }

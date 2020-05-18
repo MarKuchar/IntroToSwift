@@ -19,7 +19,7 @@ class DetailTableViewCell: UITableViewCell {
     convenience init(placeholder: String) {
         self.init()
         contentView.addSubview(textField)
-        textField.matchParent()
+        textField.matchParent(padding: .init(top: 0, left: 10, bottom: 0, right: 10))
 //        textField.placeholder = placeholder
     }
     
