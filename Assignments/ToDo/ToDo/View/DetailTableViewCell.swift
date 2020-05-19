@@ -15,7 +15,7 @@ class DetailTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-        
+                
     convenience init(placeholder: String) {
         self.init()
         contentView.addSubview(textField)

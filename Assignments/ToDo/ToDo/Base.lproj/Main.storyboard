@@ -16,17 +16,17 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="11" reuseIdentifier="TodoCell" id="sig-mt-zPw" customClass="TodoTableViewCell" customModule="ToDo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="37"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sig-mt-zPw" id="fze-CQ-cKJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="21"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ZBx-84-2IL">
-                                            <rect key="frame" x="10" y="0.0" width="394" height="21"/>
+                                            <rect key="frame" x="16" y="8" width="382" height="21"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ii8-uV-aJM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -35,10 +35,10 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="ZBx-84-2IL" secondAttribute="bottom" id="MJA-Zh-KEj"/>
-                                        <constraint firstItem="ZBx-84-2IL" firstAttribute="leading" secondItem="fze-CQ-cKJ" secondAttribute="leading" constant="10" id="RrH-dk-Riw"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZBx-84-2IL" secondAttribute="trailing" constant="10" id="c60-yb-hdx"/>
-                                        <constraint firstItem="ZBx-84-2IL" firstAttribute="top" secondItem="fze-CQ-cKJ" secondAttribute="top" id="efN-LP-4pi"/>
+                                        <constraint firstItem="ZBx-84-2IL" firstAttribute="top" secondItem="fze-CQ-cKJ" secondAttribute="top" constant="8" id="01E-tY-fQe"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZBx-84-2IL" secondAttribute="bottom" constant="8" id="rPZ-Pw-TCA"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZBx-84-2IL" secondAttribute="trailing" constant="16" id="ruq-pZ-ytC"/>
+                                        <constraint firstItem="ZBx-84-2IL" firstAttribute="leading" secondItem="fze-CQ-cKJ" secondAttribute="leading" constant="16" id="tXk-1A-Yzc"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
