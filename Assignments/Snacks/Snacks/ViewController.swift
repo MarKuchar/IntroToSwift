@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     
@@ -17,18 +17,52 @@ class ViewController: UIViewController {
     
     @IBOutlet var customNavBar: UIView!
     
-    let oreoImage = UIImageView(image: UIImage(named: "oreos"))
-    let pizzaImage = UIImageView(image: UIImage(named: "pizza_pockets"))
-    let popTartsImage = UIImageView(image: UIImage(named: "pop_tarts"))
-    let popsicleImage = UIImageView(image: UIImage(named: "popsicle"))
-    let ramenImage = UIImageView(image: UIImage(named: "ramen"))
+    var arrayOfSnacks: [String] = .init()
+    
+    let oreoImage: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "oreos"), for: .normal)
+        return btn
+    }()
+    
+    let pizzaImage: UIButton = {
+       let btn = UIButton()
+        btn.setImage(UIImage(named: "pizza_pockets"), for: .normal)
+        return btn
+    }()
+    
+    let popTartsImage: UIButton = {
+       let btn = UIButton()
+        btn.setImage(UIImage(named: "pop_tarts"), for: .normal)
+        return btn
+    }()
+    
+    let popsicleImage: UIButton = {
+       let btn = UIButton()
+        btn.setImage(UIImage(named: "popsicle"), for: .normal)
+        return btn
+    }()
+    
+    let ramenImage: UIButton = {
+       let btn = UIButton()
+        btn.setImage(UIImage(named: "ramen"), for: .normal)
+        return btn
+    }()
+    
+    
+    
+    
+    let oreoImage1 = UIImageView(image: UIImage(named: "oreos"))
+    let pizzaImage1 = UIImageView(image: UIImage(named: "pizza_pockets"))
+    let popTartsImage1 = UIImageView(image: UIImage(named: "pop_tarts"))
+    let popsicleImage1 = UIImageView(image: UIImage(named: "popsicle"))
+    let ramenImage1 = UIImageView(image: UIImage(named: "ramen"))
     
     var stackOfSnacks: UIStackView = {
         let hView = UIStackView()
         hView.translatesAutoresizingMaskIntoConstraints = false
         hView.axis = .horizontal
         hView.distribution = .fillEqually
-//        hView.spacing = 5
         hView.isHidden = true
         return hView
     }()
@@ -47,13 +81,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         customNavBar.addSubview(stackOfSnacks)
         createDummy()
+        
     }
 
+    @objc func imageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        if gestureRecognizer.name == "gestureRecognizer1" {
+            
+            print("bla")
+        }
+        print(#function)
+    }
 
     @IBAction func plusIconPressed(_ sender: UIButton) {
         switch sender.tag {
             case 0:
-                UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.25, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+                UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.12, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
                     self.heightConstraint.constant = 170
                     let rotationTransform = CGAffineTransform(rotationAngle: .pi/4)
                     self.plusBtn.transform = rotationTransform
@@ -63,7 +105,7 @@ class ViewController: UIViewController {
                     self.isDisplaying = true
                 });
             default:
-                UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.25, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+                UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.12, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
                     self.heightConstraint.constant = 88
                     self.plusBtn.transform = .identity
                     self.view.layoutIfNeeded()
@@ -71,9 +113,6 @@ class ViewController: UIViewController {
                 }, completion: ((Bool) -> Void)? { _ in
                     self.isDisplaying = false
                 });
-                UIView.animate(withDuration: 1, animations: {
-                    
-                })
         }
     }
     
@@ -94,5 +133,15 @@ class ViewController: UIViewController {
         stackOfSnacks.addArrangedSubview(popsicleImage)
         stackOfSnacks.addArrangedSubview(ramenImage)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        return cell
+    }
+
 }
 
