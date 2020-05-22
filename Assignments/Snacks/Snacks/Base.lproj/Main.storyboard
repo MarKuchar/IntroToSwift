@@ -59,6 +59,7 @@
                     <connections>
                         <outlet property="customNavBar" destination="35y-B0-vId" id="8kA-sH-mzM"/>
                         <outlet property="heightConstraint" destination="n63-bL-wVB" id="4yO-qp-cXG"/>
+                        <outlet property="listOfSnacks" destination="9L0-iJ-pw2" id="swa-n8-jVH"/>
                         <outlet property="plusBtn" destination="Csx-cc-sI2" id="Xco-8r-Fdn"/>
                     </connections>
                 </viewController>

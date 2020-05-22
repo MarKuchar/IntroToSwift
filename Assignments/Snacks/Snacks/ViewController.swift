@@ -19,44 +19,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var arrayOfSnacks: [String] = .init()
     
+    @IBOutlet var listOfSnacks: UITableView!
+    
     let oreoImage: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "oreos"), for: .normal)
+        btn.addTarget(self, action: #selector(imageTapped), for: .touchUpInside)
+        btn.tag = 0
         return btn
     }()
     
     let pizzaImage: UIButton = {
        let btn = UIButton()
         btn.setImage(UIImage(named: "pizza_pockets"), for: .normal)
+        btn.addTarget(self, action: #selector(imageTapped), for: .touchUpInside)
+        btn.tag = 1
         return btn
     }()
     
     let popTartsImage: UIButton = {
        let btn = UIButton()
         btn.setImage(UIImage(named: "pop_tarts"), for: .normal)
+        btn.addTarget(self, action: #selector(imageTapped), for: .touchUpInside)
+        btn.tag = 2
         return btn
     }()
     
     let popsicleImage: UIButton = {
        let btn = UIButton()
         btn.setImage(UIImage(named: "popsicle"), for: .normal)
+        btn.addTarget(self, action: #selector(imageTapped), for: .touchUpInside)
+        btn.tag = 3
         return btn
     }()
     
     let ramenImage: UIButton = {
        let btn = UIButton()
         btn.setImage(UIImage(named: "ramen"), for: .normal)
+        btn.addTarget(self, action: #selector(imageTapped), for: .touchUpInside)
+        btn.tag = 4
         return btn
     }()
-    
-    
-    
-    
-    let oreoImage1 = UIImageView(image: UIImage(named: "oreos"))
-    let pizzaImage1 = UIImageView(image: UIImage(named: "pizza_pockets"))
-    let popTartsImage1 = UIImageView(image: UIImage(named: "pop_tarts"))
-    let popsicleImage1 = UIImageView(image: UIImage(named: "popsicle"))
-    let ramenImage1 = UIImageView(image: UIImage(named: "ramen"))
     
     var stackOfSnacks: UIStackView = {
         let hView = UIStackView()
@@ -81,15 +84,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         customNavBar.addSubview(stackOfSnacks)
         createDummy()
-        
+        listOfSnacks.delegate = self
+        listOfSnacks.dataSource = self
+        listOfSnacks.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
     }
 
-    @objc func imageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
-        if gestureRecognizer.name == "gestureRecognizer1" {
-            
-            print("bla")
+    @objc func imageTapped(_ sender: UIButton) {
+        switch sender.tag {
+            case 0:
+                arrayOfSnacks.append("Oreo")
+            case 1:
+                arrayOfSnacks.append("Pizza")
+            case 2:
+                arrayOfSnacks.append("Pop tarts")
+            case 3:
+                arrayOfSnacks.append("Popsicle")
+            default:
+                arrayOfSnacks.append("Ramen")
         }
-        print(#function)
+        listOfSnacks.reloadData()
     }
 
     @IBAction func plusIconPressed(_ sender: UIButton) {
@@ -135,13 +148,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return arrayOfSnacks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+        cell.textLabel?.text = arrayOfSnacks[indexPath.row]
         return cell
     }
-
+    
+    
 }
 
