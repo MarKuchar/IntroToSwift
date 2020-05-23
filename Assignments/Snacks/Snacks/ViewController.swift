@@ -102,7 +102,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             default:
                 arrayOfSnacks.append("Ramen")
         }
-        listOfSnacks.reloadData()
+        // Regular way with reloading data
+//        listOfSnacks.reloadData()
+        
+        // If you want to insert row with this way is going to be with animation
+        listOfSnacks.beginUpdates()
+        listOfSnacks.insertRows(at: [IndexPath(row: arrayOfSnacks.count-1, section: 0)], with: .automatic)
+        listOfSnacks.endUpdates()
     }
 
     @IBAction func plusIconPressed(_ sender: UIButton) {
@@ -156,7 +162,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = arrayOfSnacks[indexPath.row]
         return cell
     }
-    
-    
 }
 
