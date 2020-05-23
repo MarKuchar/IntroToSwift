@@ -17,6 +17,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet var customNavBar: UIView!
     
+    let titledSnack: UILabel = {
+        let title = UILabel()
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = "SNACKS"
+        return title
+    }()
+    
     var arrayOfSnacks: [String] = .init()
     
     @IBOutlet var listOfSnacks: UITableView!
@@ -83,6 +90,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         customNavBar.addSubview(stackOfSnacks)
+        customNavBar.addSubview(titledSnack)
         createDummy()
         listOfSnacks.delegate = self
         listOfSnacks.dataSource = self
@@ -117,7 +125,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.12, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
                     self.heightConstraint.constant = 170
                     let rotationTransform = CGAffineTransform(rotationAngle: .pi/4)
+                    let translateTransform = CGAffineTransform(translationX: 0, y: -25)
+                    
+                    self.titledSnack.transform = translateTransform
+                    self.titledSnack.text = "Add a SNACK"
                     self.plusBtn.transform = rotationTransform
+                    
                     self.view.layoutIfNeeded()
                     self.stackOfSnacks.isHidden = false
                 }, completion: ((Bool) -> Void)? { _ in
@@ -127,6 +140,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.12, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
                     self.heightConstraint.constant = 88
                     self.plusBtn.transform = .identity
+                    self.titledSnack.transform = .identity
+                    self.titledSnack.text = "SNACKS"
                     self.view.layoutIfNeeded()
                     self.stackOfSnacks.isHidden = true
                 }, completion: ((Bool) -> Void)? { _ in
@@ -143,6 +158,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             stackOfSnacks.heightAnchor.constraint(equalToConstant: 80)
         ])
         addImages()
+        
+        NSLayoutConstraint.activate([titledSnack.centerXAnchor.constraint(equalTo: customNavBar.centerXAnchor),
+                                     titledSnack.centerYAnchor.constraint(equalTo: customNavBar.centerYAnchor)])
     }
     
     func addImages() {
