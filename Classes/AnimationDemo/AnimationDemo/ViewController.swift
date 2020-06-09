@@ -13,7 +13,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    example1()
+    example3()
   }
   
   /// change the background color of the square view
