@@ -12,6 +12,5 @@ class EmojiTableViewCell: UITableViewCell {
   @IBOutlet var emojiSymbolLabel: UILabel!
   @IBOutlet var emojiNameLabel: UILabel!
   @IBOutlet var emojiDescriptionLabel: UILabel!
-  
 }
 
