@@ -1,5 +1,5 @@
 //
-//  HeaderCollectionReusableView.swift
+//  RestKindCollectionViewCell.swift
 //  RestaurantCollectionViewApp
 //
 //  Created by Martin Kuchar on 2020-08-18.
@@ -8,21 +8,23 @@
 
 import UIKit
 
-class HeaderCollectionReusableView: UICollectionReusableView {
-    let label: UILabel = {
-        let lb = UILabel()
-        lb.textAlignment = .center
-        lb.text = "My restaurants"
+class RestKindCollectionViewCell: UICollectionViewCell {
+    
+    var label: UILabel = {
+       let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = UIFont.boldSystemFont(ofSize: 16)
+        lb.text = "Restaurant"
+        lb.font = UIFont.boldSystemFont(ofSize: 12)
+        lb.textColor = .blue
+        lb.textAlignment = .center
         return lb
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(label)
-        backgroundColor = .white
-        label.matchParent(padding: .init(top: 8, left: 8, bottom: 8, right: 8))
+        contentView.addSubview(label)
+        label.matchParent()
+        contentView.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

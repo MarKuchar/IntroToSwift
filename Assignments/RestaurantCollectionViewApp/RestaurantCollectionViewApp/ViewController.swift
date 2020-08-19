@@ -9,44 +9,64 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var collectionView: UICollectionView!
+    
+    var headerView: HeaderView!
     private let padding: CGFloat = 8
     private let cellId = "RestaurantCell"
     
-    override func loadView() {
-        super.loadView()
-        // Collection view flow and layout
+    var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = padding
-        // Collection frame
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view = collectionView
-    }
+        layout.minimumLineSpacing = 8
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .white
+        return cv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
+        
+        navigationItem.title = "My restaurants"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.barTintColor = .blue
+        
+
+        headerView = HeaderView()
+        headerView.constraintHeight(equalToConstant: 50)
+        
+        view.addSubview(headerView)
+        view.addSubview(collectionView)
+        headerView.anchors(topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor,
+                           trailingAnchor: view.trailingAnchor, bottomAnchor: collectionView.topAnchor,
+                           padding: .init(top: 0, left: 0, bottom: 10, right: 0))
+        
+        collectionViewSetup()
+    }
+
+    func collectionViewSetup() {
+        collectionView.anchors(topAnchor: headerView.bottomAnchor, leadingAnchor: view.leadingAnchor,
+                               trailingAnchor: view.trailingAnchor, bottomAnchor: view.bottomAnchor,
+                               padding: .init(top: 10, left: 10, bottom: 5, right: 10))
         collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
 }
 
+
 extension ViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
-        
-        cell.backgroundColor = .green
         return cell
     }
 }
@@ -62,8 +82,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let side = (collectionView.frame.width - 3 * padding) / 2
         return CGSize(width: side, height: side)
     }
-    
-    
 }
 
 
