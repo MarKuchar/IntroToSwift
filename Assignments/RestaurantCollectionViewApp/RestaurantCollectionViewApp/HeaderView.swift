@@ -9,7 +9,6 @@
 import UIKit
 
 class HeaderView: UIView {
-    let restKinds: [Food] = Food.foods()
     
     private let cellId = "RestaurantKind"
     var collectionView: UICollectionView!

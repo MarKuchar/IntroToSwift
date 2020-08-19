@@ -24,17 +24,19 @@ struct Food: Decodable {
 extension Food.Kind: CaseIterable { }
 
 extension Food.Kind: RawRepresentable {
+    typealias RawValue = String
+    
     init?(rawValue: String) {
         switch rawValue {
-            case "american":
+            case "American":
                 self = .american
-            case "slovak":
+            case "Slovak":
                 self = .slovak
-            case "french":
+            case "French":
                 self = .french
-            case "mexican":
+            case "Mexican":
                 self = .mexican
-            case "italian":
+            case "Italian":
                 self = .italian
             default:
                 return nil
@@ -44,29 +46,25 @@ extension Food.Kind: RawRepresentable {
     var rawValue: String {
         switch self {
             case .american:
-                return "american"
+                return "American"
             case .slovak:
-                return "slovak"
+                return "Slovak"
             case .mexican:
-                return "mexican"
+                return "Mexican"
             case .italian:
-                return "italian"
+                return "Italian"
             case .french:
-                return "french"
+                return "French"
         }
     }
-    
-    typealias RawValue = String
 }
-
-
 
 extension Food {
   static func foods() -> [Food] {
     guard
-      let url = Bundle.main.url(forResource: "foodKinds", withExtension: "geojson"),
-      let data = try? Data(contentsOf: url)
-      else { return [] }
+        let url = Bundle.main.url(forResource: "foods", withExtension: "json"),
+        let data = try? Data(contentsOf: url)
+        else { return [] }
     
     do {
         return try JSONDecoder().decode([Food].self, from: data)

@@ -18,6 +18,7 @@
 		95145AD024ECAA5E00F3841F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145ACF24ECAA5E00F3841F /* HeaderView.swift */; };
 		95145AD324ECB03600F3841F /* RestKindCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145AD224ECB03600F3841F /* RestKindCollectionViewCell.swift */; };
 		95145AD624ECD9C000F3841F /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145AD524ECD9C000F3841F /* Food.swift */; };
+		9534323724EDE3D700F48802 /* foods.json in Resources */ = {isa = PBXBuildFile; fileRef = 95145AD724ECDD4A00F3841F /* foods.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,7 @@
 		95145ACF24ECAA5E00F3841F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		95145AD224ECB03600F3841F /* RestKindCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestKindCollectionViewCell.swift; sourceTree = "<group>"; };
 		95145AD524ECD9C000F3841F /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		95145AD724ECDD4A00F3841F /* foodKinds.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = foodKinds.geojson; sourceTree = "<group>"; };
+		95145AD724ECDD4A00F3841F /* foods.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = foods.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +77,7 @@
 				95145ACB24EC996E00F3841F /* RestaurantCollectionViewCell.swift */,
 				95145ACD24EC9E9100F3841F /* HeaderCollectionReusableView.swift */,
 				95145AC224EC91F900F3841F /* Info.plist */,
+				95145AD724ECDD4A00F3841F /* foods.json */,
 			);
 			path = RestaurantCollectionViewApp;
 			sourceTree = "<group>";
@@ -103,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				95145AD524ECD9C000F3841F /* Food.swift */,
-				95145AD724ECDD4A00F3841F /* foodKinds.geojson */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,6 +167,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9534323724EDE3D700F48802 /* foods.json in Resources */,
 				95145AC124EC91F900F3841F /* LaunchScreen.storyboard in Resources */,
 				95145ABE24EC91F900F3841F /* Assets.xcassets in Resources */,
 			);

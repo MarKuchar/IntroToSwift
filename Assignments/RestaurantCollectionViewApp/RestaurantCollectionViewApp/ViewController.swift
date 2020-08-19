@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var food: [Food] = Food.foods()
     var headerView: HeaderView!
     private let padding: CGFloat = 8
     private let cellId = "RestaurantCell"
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,6 +68,8 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
+        print(food)
+        cell.imageView.image = UIImage(named: food[indexPath.row].name)
         return cell
     }
 }
