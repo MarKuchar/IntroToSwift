@@ -17,6 +17,7 @@
 		95145ACE24EC9E9100F3841F /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145ACD24EC9E9100F3841F /* HeaderCollectionReusableView.swift */; };
 		95145AD024ECAA5E00F3841F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145ACF24ECAA5E00F3841F /* HeaderView.swift */; };
 		95145AD324ECB03600F3841F /* RestKindCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145AD224ECB03600F3841F /* RestKindCollectionViewCell.swift */; };
+		95145AD624ECD9C000F3841F /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95145AD524ECD9C000F3841F /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		95145ACD24EC9E9100F3841F /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		95145ACF24ECAA5E00F3841F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		95145AD224ECB03600F3841F /* RestKindCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestKindCollectionViewCell.swift; sourceTree = "<group>"; };
+		95145AD524ECD9C000F3841F /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		95145AD724ECDD4A00F3841F /* foodKinds.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = foodKinds.geojson; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,7 @@
 		95145AB324EC91F800F3841F /* RestaurantCollectionViewApp */ = {
 			isa = PBXGroup;
 			children = (
+				95145AD424ECD9AB00F3841F /* Model */,
 				95145AD124ECAAD700F3841F /* SupportingFiles */,
 				95145AC824EC931E00F3841F /* Utis */,
 				95145ACF24ECAA5E00F3841F /* HeaderView.swift */,
@@ -93,6 +97,15 @@
 				95145ABF24EC91F900F3841F /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		95145AD424ECD9AB00F3841F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				95145AD524ECD9C000F3841F /* Food.swift */,
+				95145AD724ECDD4A00F3841F /* foodKinds.geojson */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +183,7 @@
 				95145AB524EC91F800F3841F /* AppDelegate.swift in Sources */,
 				95145AB724EC91F800F3841F /* SceneDelegate.swift in Sources */,
 				95145AD324ECB03600F3841F /* RestKindCollectionViewCell.swift in Sources */,
+				95145AD624ECD9C000F3841F /* Food.swift in Sources */,
 				95145ACE24EC9E9100F3841F /* HeaderCollectionReusableView.swift in Sources */,
 				95145ACA24EC934000F3841F /* UIView+ConstraintLayout.swift in Sources */,
 				95145AD024ECAA5E00F3841F /* HeaderView.swift in Sources */,

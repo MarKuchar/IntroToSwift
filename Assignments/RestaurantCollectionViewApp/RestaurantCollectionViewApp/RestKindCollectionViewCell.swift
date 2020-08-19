@@ -13,7 +13,6 @@ class RestKindCollectionViewCell: UICollectionViewCell {
     var label: UILabel = {
        let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.text = "Restaurant"
         lb.font = UIFont.boldSystemFont(ofSize: 12)
         lb.textColor = .blue
         lb.textAlignment = .center

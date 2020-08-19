@@ -13,6 +13,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         let lb = UILabel()
         lb.textAlignment = .center
         lb.text = "My restaurants"
+        lb.adjustsFontSizeToFitWidth = true
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.font = UIFont.boldSystemFont(ofSize: 16)
         return lb
@@ -22,7 +23,8 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         super.init(frame: frame)
         addSubview(label)
         backgroundColor = .white
-        label.matchParent(padding: .init(top: 8, left: 8, bottom: 8, right: 8))
+//        label.widthAnchor.constraint(greaterThanOrEqualToConstant: label.intrinsicContentSize.width).isActive = true
+//        label.matchParent(padding: .init(top: 8, left: 8, bottom: 8, right: 8))
     }
     
     required init?(coder: NSCoder) {

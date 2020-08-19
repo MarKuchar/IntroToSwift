@@ -9,7 +9,7 @@
 import UIKit
 
 class HeaderView: UIView {
-    let restaurantKinds = ["American",""]
+    let restaurantKinds = ["American", "Mexican", "Slovak", "Chinnese", "Italian", "French"]
     
     private let cellId = "RestaurantKind"
     var collectionView: UICollectionView!
@@ -28,7 +28,7 @@ class HeaderView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
-        collectionView.backgroundColor = .blue
+        collectionView.backgroundColor = .lightGray
         collectionView.matchParent()
     }
     
@@ -44,11 +44,12 @@ extension HeaderView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return restaurantKinds.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestKindCollectionViewCell
+        cell.label.text = restaurantKinds[indexPath.row]
         return cell
     }
 }
@@ -62,6 +63,7 @@ extension HeaderView: UICollectionViewDelegate {
 extension HeaderView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 25)
+        
+        return CGSize(width: 60, height: 25)
     }
 }

@@ -19,13 +19,13 @@ class ViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 8
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .lightGray
         return cv
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         
         navigationItem.title = "My restaurants"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
