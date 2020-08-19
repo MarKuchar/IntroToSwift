@@ -9,7 +9,7 @@
 import UIKit
 
 class HeaderView: UIView {
-    let restaurantKinds = ["American", "Mexican", "Slovak", "Chinnese", "Italian", "French"]
+    let restKinds: [Food] = Food.foods()
     
     private let cellId = "RestaurantKind"
     var collectionView: UICollectionView!
@@ -44,12 +44,12 @@ extension HeaderView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return restaurantKinds.count
+        return Food.Kind.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestKindCollectionViewCell
-        cell.label.text = restaurantKinds[indexPath.row]
+        cell.label.text = Food.Kind.allCases[indexPath.row].rawValue
         return cell
     }
 }

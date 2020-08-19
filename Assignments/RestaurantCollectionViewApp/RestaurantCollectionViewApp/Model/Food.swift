@@ -12,7 +12,7 @@ struct Food: Decodable {
     let name: String
     let kind: Kind
     
-    enum Kind {
+    enum Kind: Decodable {
         case american
         case slovak
         case mexican
