@@ -77,7 +77,6 @@
 				95145ACB24EC996E00F3841F /* RestaurantCollectionViewCell.swift */,
 				95145ACD24EC9E9100F3841F /* HeaderCollectionReusableView.swift */,
 				95145AC224EC91F900F3841F /* Info.plist */,
-				95145AD724ECDD4A00F3841F /* foods.json */,
 			);
 			path = RestaurantCollectionViewApp;
 			sourceTree = "<group>";
@@ -105,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				95145AD524ECD9C000F3841F /* Food.swift */,
+				95145AD724ECDD4A00F3841F /* foods.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";

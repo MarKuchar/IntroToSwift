@@ -8,12 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol FilterFood: class {
+    func filterFood(byKind: Food.Kind)
+}
+
+class ViewController: UIViewController, FilterFood {
     
     private var food: [Food] = Food.foods()
+    private var filteringSet: Set<Food.Kind> = []
+    private var filteredFood: [Food] = []
     var headerView: HeaderView!
     private let padding: CGFloat = 8
     private let cellId = "RestaurantCell"
+    
+    private var isFiltering = false
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +43,7 @@ class ViewController: UIViewController {
         
 
         headerView = HeaderView()
+        headerView.delegate = self
         headerView.constraintHeight(equalToConstant: 50)
         
         view.addSubview(headerView)
@@ -54,6 +63,18 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
+    // Helper method
+    func filterFood(byKind: Food.Kind) {
+        if !filteringSet.insert(byKind).inserted {
+            filteringSet.remove(byKind)
+        }
+        filteredFood = food.filter { (food) in
+            return filteringSet.contains(food.kind)
+        }
+        isFiltering = !filteringSet.isEmpty
+        collectionView.reloadData()
+    }
 }
 
 
@@ -63,13 +84,12 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return isFiltering ? filteredFood.count : food.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
-        print(food)
-        cell.imageView.image = UIImage(named: food[indexPath.row].name)
+        cell.imageView.image = UIImage(named: isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name)
         return cell
     }
 }

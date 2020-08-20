@@ -15,7 +15,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         lb.text = "My restaurants"
         lb.adjustsFontSizeToFitWidth = true
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = UIFont.boldSystemFont(ofSize: 16)
+        lb.font = UIFont.boldSystemFont(ofSize: 30)
         return lb
     }()
     

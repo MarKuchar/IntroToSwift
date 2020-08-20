@@ -10,6 +10,7 @@ import Foundation
 
 struct Food: Decodable {
     let name: String
+//    let cost: String
     let kind: Kind
     
     enum Kind: Decodable {
@@ -18,6 +19,7 @@ struct Food: Decodable {
         case mexican
         case french
         case italian
+        case czech
     }
 }
 
@@ -38,6 +40,8 @@ extension Food.Kind: RawRepresentable {
                 self = .mexican
             case "Italian":
                 self = .italian
+            case "Czech":
+                self = .czech
             default:
                 return nil
         }
@@ -55,6 +59,8 @@ extension Food.Kind: RawRepresentable {
                 return "Italian"
             case .french:
                 return "French"
+            case .czech:
+                return "Czech"
         }
     }
 }

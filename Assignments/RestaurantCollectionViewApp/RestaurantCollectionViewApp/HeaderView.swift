@@ -12,6 +12,8 @@ class HeaderView: UIView {
     
     private let cellId = "RestaurantKind"
     var collectionView: UICollectionView!
+    private let borderWidth: CGFloat = 0.5
+    weak var delegate: FilterFood?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +23,8 @@ class HeaderView: UIView {
         let customLayout = UICollectionViewFlowLayout()
         customLayout.scrollDirection = .horizontal
         customLayout.minimumLineSpacing = 20
+        // automaticly change the size
+        customLayout.estimatedItemSize = CGSize(width: 30, height: 25)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: customLayout)
         
         collectionView.register(RestKindCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
@@ -49,20 +53,26 @@ extension HeaderView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestKindCollectionViewCell
         cell.label.text = Food.Kind.allCases[indexPath.row].rawValue
+        cell.layer.borderWidth = borderWidth
         return cell
     }
+    
+    
 }
 
 extension HeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected")
+        delegate?.filterFood(byKind: Food.Kind.allCases[indexPath.row])
     }
 }
 
 extension HeaderView: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 60, height: 25)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//      return .init(top: 8 * 2, left: 0, bottom: 8 * 4, right: 0)
+//    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 60, height: 25)
+//    }
 }

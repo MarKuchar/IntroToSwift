@@ -12,16 +12,45 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
-        iv.layer.masksToBounds = true
+        iv.clipsToBounds = true
         return iv
+    }()
+    
+    let nameLabel: UILabel = {
+       let lb = UILabel()
+        lb.text = "Name"
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        return lb
+    }()
+    
+    let kindLabel: UILabel = {
+       let lb = UILabel()
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        lb.text = "Kind"
+        return lb
+    }()
+    
+    let costLabel: UILabel = {
+       let lb = UILabel()
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        return lb
+    }()
+    
+    let vStack: UIStackView = {
+       let vs = UIStackView()
+        vs.axis = .vertical
+        vs.distribution = .equalSpacing
+        vs.spacing = 10
+        return vs
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
-        contentView.backgroundColor = .gray
-        imageView.matchParent()
+        contentView.addSubview(vStack)
+        vStack.matchParent()
+        vStack.addArrangedSubview(imageView)
+        vStack.addArrangedSubview(nameLabel)
+//        contentView.backgroundColor = .gray
     }
     
     required init?(coder: NSCoder) {
