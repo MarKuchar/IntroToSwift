@@ -25,8 +25,6 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         super.init(frame: frame)
         addSubview(label)
         backgroundColor = .white
-//        label.widthAnchor.constraint(greaterThanOrEqualToConstant: label.intrinsicContentSize.width).isActive = true
-//        label.matchParent(padding: .init(top: 8, left: 8, bottom: 8, right: 8))
     }
     
     required init?(coder: NSCoder) {

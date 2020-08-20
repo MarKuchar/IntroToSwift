@@ -17,27 +17,26 @@ class HeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = .white
-        
+        collectionViewSetup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func collectionViewSetup() {
         let customLayout = UICollectionViewFlowLayout()
         customLayout.scrollDirection = .horizontal
         customLayout.minimumLineSpacing = 15
-        // automaticly change the size
-//        customLayout.estimatedItemSize = CGSize(width: 30, height: 25)
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: customLayout)
-        
         collectionView.register(RestKindCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
         collectionView.backgroundColor = .lightGray
         collectionView.matchParent()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

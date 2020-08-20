@@ -35,27 +35,29 @@ class ViewController: UIViewController, FilterFood {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        
+        navigationControllerSetup()
+        headerSetup()
+        collectionViewSetup()
+    }
+    
+    func navigationControllerSetup() {
         navigationItem.title = "My Restaurants"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.barTintColor = .systemBlue
-        
-
+    }
+    
+    func headerSetup() {
         headerView = HeaderView()
         headerView.delegate = self
         headerView.constraintHeight(equalToConstant: 50)
-        
         view.addSubview(headerView)
         view.addSubview(collectionView)
-        
         headerView.anchors(topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor,
                            trailingAnchor: view.trailingAnchor, bottomAnchor: collectionView.topAnchor,
                            padding: .init(top: 0, left: 0, bottom: 10, right: 0))
-        
-        collectionViewSetup()
     }
-
+    
     func collectionViewSetup() {
         collectionView.anchors(topAnchor: headerView.bottomAnchor, leadingAnchor: view.leadingAnchor,
                                trailingAnchor: view.trailingAnchor, bottomAnchor: view.bottomAnchor,
@@ -93,7 +95,6 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
-        print(food)
         cell.imageView.image = UIImage(named: isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name)
         cell.nameLabel.text = isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name
         cell.kindLabel.text = isFiltering ? filteredFood[indexPath.row].kind.rawValue : food[indexPath.row].kind.rawValue
@@ -104,7 +105,6 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Tapped")
     }
 }
 
