@@ -11,6 +11,7 @@
   { "name": "Gulas", "kind": "Slovak" },
   { "name": "Taco", "kind": "Mexican" },
   { "name": "Burrito", "kind": "Mexican" },
+  { "name": "Tostada", "kind": "Mexican" },
   { "name": "Macarons", "kind": "French" },
   { "name": "Mussels", "kind": "French" },
   { "name": "Croissant", "kind": "French" },

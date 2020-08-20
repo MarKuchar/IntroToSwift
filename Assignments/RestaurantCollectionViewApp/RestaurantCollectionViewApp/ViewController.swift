@@ -36,10 +36,10 @@ class ViewController: UIViewController, FilterFood {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
         
-        navigationItem.title = "My restaurants"
+        navigationItem.title = "My Restaurants"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationController?.navigationBar.barTintColor = .blue
+        navigationController?.navigationBar.barTintColor = .systemBlue
         
 
         headerView = HeaderView()
@@ -48,6 +48,7 @@ class ViewController: UIViewController, FilterFood {
         
         view.addSubview(headerView)
         view.addSubview(collectionView)
+        
         headerView.anchors(topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.leadingAnchor,
                            trailingAnchor: view.trailingAnchor, bottomAnchor: collectionView.topAnchor,
                            padding: .init(top: 0, left: 0, bottom: 10, right: 0))
@@ -64,7 +65,7 @@ class ViewController: UIViewController, FilterFood {
         collectionView.delegate = self
     }
     
-    // Helper method
+    // Delegate method
     func filterFood(byKind: Food.Kind) {
         if !filteringSet.insert(byKind).inserted {
             filteringSet.remove(byKind)
@@ -74,6 +75,9 @@ class ViewController: UIViewController, FilterFood {
         }
         isFiltering = !filteringSet.isEmpty
         collectionView.reloadData()
+        UIView.animate(withDuration: 1) {
+          self.view.layoutIfNeeded()
+        }
     }
 }
 

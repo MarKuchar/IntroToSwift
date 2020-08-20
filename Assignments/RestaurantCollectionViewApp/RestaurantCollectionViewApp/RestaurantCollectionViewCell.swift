@@ -50,7 +50,6 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         vStack.matchParent()
         vStack.addArrangedSubview(imageView)
         vStack.addArrangedSubview(nameLabel)
-//        contentView.backgroundColor = .gray
     }
     
     required init?(coder: NSCoder) {

@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - HeaderCollectionReusableView was not used in the project
+
 class HeaderCollectionReusableView: UICollectionReusableView {
     let label: UILabel = {
         let lb = UILabel()
@@ -15,7 +17,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         lb.text = "My restaurants"
         lb.adjustsFontSizeToFitWidth = true
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = UIFont.boldSystemFont(ofSize: 30)
+        lb.font = UIFont.boldSystemFont(ofSize: 33)
         return lb
     }()
     

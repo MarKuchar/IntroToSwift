@@ -13,9 +13,11 @@ class RestKindCollectionViewCell: UICollectionViewCell {
     var label: UILabel = {
        let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.font = UIFont.boldSystemFont(ofSize: 18)
-        lb.textColor = .blue
+        lb.font = UIFont.boldSystemFont(ofSize: 13)
+        lb.textColor = .systemBlue
+        lb.backgroundColor = .white
         lb.textAlignment = .center
+        lb.layer.borderColor = UIColor.white.cgColor
         return lb
     }()
     
@@ -23,7 +25,7 @@ class RestKindCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(label)
         label.matchParent()
-        contentView.backgroundColor = .white
+        contentView.layer.borderColor = UIColor.white.cgColor
     }
     
     required init?(coder: NSCoder) {
