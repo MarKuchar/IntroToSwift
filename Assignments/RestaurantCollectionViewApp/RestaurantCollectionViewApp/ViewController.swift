@@ -93,7 +93,11 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
+        print(food)
         cell.imageView.image = UIImage(named: isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name)
+        cell.nameLabel.text = isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name
+        cell.kindLabel.text = isFiltering ? filteredFood[indexPath.row].kind.rawValue : food[indexPath.row].kind.rawValue
+        cell.costLabel.text = isFiltering ? filteredFood[indexPath.row].cost : food[indexPath.row].cost
         return cell
     }
 }
@@ -107,7 +111,7 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let side = (collectionView.frame.width - 3 * padding) / 2
-        return CGSize(width: side, height: side)
+        return CGSize(width: side, height: side + 20)
     }
 }
 

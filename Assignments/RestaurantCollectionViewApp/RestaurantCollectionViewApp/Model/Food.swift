@@ -10,8 +10,8 @@ import Foundation
 
 struct Food: Decodable {
     let name: String
-//    let cost: String
     let kind: Kind
+    let cost: String
     
     enum Kind: Decodable {
         case american

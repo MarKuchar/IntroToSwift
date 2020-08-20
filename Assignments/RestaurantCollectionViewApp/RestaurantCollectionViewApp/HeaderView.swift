@@ -56,8 +56,6 @@ extension HeaderView: UICollectionViewDataSource {
         cell.label.text = Food.Kind.allCases[indexPath.row].rawValue
         return cell
     }
-    
-    
 }
 
 extension HeaderView: UICollectionViewDelegate {
@@ -71,11 +69,6 @@ extension HeaderView: UICollectionViewDelegate {
 }
 
 extension HeaderView: UICollectionViewDelegateFlowLayout {
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//      return .init(top: 8 * 2, left: 0, bottom: 8 * 4, right: 0)
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 65, height: 25)
     }
