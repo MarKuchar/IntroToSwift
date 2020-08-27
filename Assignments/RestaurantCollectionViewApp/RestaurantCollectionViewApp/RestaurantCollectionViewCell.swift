@@ -13,7 +13,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.setContentHuggingPriority(.required, for: .vertical)
-        iv.heightAnchor.constraint(equalToConstant: 140).isActive = true
+//        iv.heightAnchor.constraint(equalToConstant: 140).isActive = true
         iv.clipsToBounds = true
         return iv
     }()
@@ -63,6 +63,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(vStack)
         vStack.matchParent()
         vStack.addArrangedSubview(imageView)
+        imageView.constraintHeight(equalToConstant: frame.size.height * 0.8)
         vStack.addArrangedSubview(hStack)
         vStack.addArrangedSubview(kindLabel)
         hStack.addArrangedSubview(nameLabel)

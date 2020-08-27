@@ -8,12 +8,43 @@
 
 import Foundation
 
-struct Todo {
+struct Todo: Equatable {
     let title: String
     let priority: priority
     let isCompleted: Bool
     
-    enum priority: Int {
-        case low = 2, medium = 1, heigh = 0
+    enum priority {
+        case low, medium, high
+    }
+    static func ==(lhs: Todo, rhs: Todo) -> Bool {
+        return lhs.title == rhs.title 
+    }
+}
+
+extension Todo.priority: RawRepresentable {
+    typealias RawValue = String
+    
+    init?(rawValue: String) {
+        switch rawValue {
+            case "low":
+                self = .low
+            case "medium":
+                self = .medium
+            case "high":
+                self = .high
+            default:
+            return nil
+        }
+    }
+    
+    var rawValue: String {
+        switch self {
+            case .low:
+                return "low"
+            case .medium:
+                return "medium"
+            case .high:
+                return "high"
+        }
     }
 }

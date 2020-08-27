@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol FilterFood: class {
+protocol FilterFoodDelegate: class {
     func filterFood(byKind: Food.Kind)
 }
 
-class ViewController: UIViewController, FilterFood {
+class ViewController: UIViewController, FilterFoodDelegate {
     
     private var food: [Food] = Food.foods()
     private var filteringSet: Set<Food.Kind> = []
@@ -67,7 +67,6 @@ class ViewController: UIViewController, FilterFood {
         collectionView.delegate = self
     }
     
-    // Delegate method
     func filterFood(byKind: Food.Kind) {
         if !filteringSet.insert(byKind).inserted {
             filteringSet.remove(byKind)

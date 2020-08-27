@@ -13,7 +13,7 @@ class HeaderView: UIView {
     private let cellId = "RestaurantKind"
     var collectionView: UICollectionView!
     private let borderWidth: CGFloat = 0.5
-    weak var delegate: FilterFood?
+    weak var delegate: FilterFoodDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

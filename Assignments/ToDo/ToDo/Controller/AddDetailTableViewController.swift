@@ -34,10 +34,11 @@ class AddDetailTableViewController: UITableViewController {
     }
 
     @objc func save(_: UIBarButtonItem) {
+        
         let name  = taskName.textField.text ?? ""
-        let task = Todo(title: name, priority: Todo.priority(rawValue: 1)!, isCompleted: false)
+        let task = Todo(title: name, priority: Todo.priority(rawValue: "medium")!, isCompleted: false)
         delegate?.addTask(task: task)
-        dismiss(animated: true, completion: nil)
+////        dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
