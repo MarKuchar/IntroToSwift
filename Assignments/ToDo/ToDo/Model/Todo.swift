@@ -22,29 +22,29 @@ struct Todo: Equatable {
 }
 
 extension Todo.priority: RawRepresentable {
-    typealias RawValue = String
+    typealias RawValue = Int
     
-    init?(rawValue: String) {
+    init?(rawValue: Int) {
         switch rawValue {
-            case "low":
+            case 2:
                 self = .low
-            case "medium":
+            case 1:
                 self = .medium
-            case "high":
+            case 0:
                 self = .high
             default:
             return nil
         }
     }
     
-    var rawValue: String {
+    var rawValue: Int {
         switch self {
             case .low:
-                return "low"
+                return 2
             case .medium:
-                return "medium"
+                return 1
             case .high:
-                return "high"
+                return 0
         }
     }
 }

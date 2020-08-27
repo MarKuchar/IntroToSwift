@@ -12,13 +12,12 @@ import CoreData
 class TodoTableViewController: FetchedResultsTableViewController, AddDetailTableViewControllerDelegate {
     
     // Using Fetch Result Controller
-    lazy var frc: NSFetchedResultsController<ToDoManagedObject> = {
-        let request: NSFetchRequest<ToDoManagedObject> = ToDoManagedObject.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \ToDoManagedObject.priority, ascending: true),
-                                   NSSortDescriptor(keyPath: \ToDoManagedObject.isCompleted, ascending: false)]
-        let frc = NSFetchedResultsController<ToDoManagedObject>(
+    lazy var frc: NSFetchedResultsController<ManagedToDo> = {
+        let request: NSFetchRequest<ManagedToDo> = ManagedToDo.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
+        let frc = NSFetchedResultsController<ManagedToDo>(
         fetchRequest: request,
-        managedObjectContext: container.viewContext,
+        managedObjectContext: container!.viewContext,
         sectionNameKeyPath: "priority",
         cacheName: nil
         )
@@ -26,10 +25,14 @@ class TodoTableViewController: FetchedResultsTableViewController, AddDetailTable
         return frc
     }()
     
-    var todos: [[ToDoManagedObject]] = []
-    var allTodos = [Todo]()
+//    var todos: [[ToDoManagedObject]] = []
+//    var allTodos = [Todo]()
     
-    private lazy var container: NSPersistentContainer! = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateUI()
+    }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,8 +40,6 @@ class TodoTableViewController: FetchedResultsTableViewController, AddDetailTable
     tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 50
     tableView.allowsMultipleSelectionDuringEditing = true
-    fetchTodos()
-    updateUI()
   }
     
     
@@ -48,77 +49,66 @@ class TodoTableViewController: FetchedResultsTableViewController, AddDetailTable
     }
   
   
-  @IBAction func multipleDeletion(_ sender: Any) {
-    if let selectedRows = tableView.indexPathsForSelectedRows {
-        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-        for path in selectedRows {
-            let todo = todos[path.section].remove(at: path.row)
-            managedContext.delete(todo)
-        }
-      tableView.deleteRows(at: selectedRows, with: .automatic)
-      CoreDataManager.shared.saveContext()
-    }
-  }
+//  @IBAction func multipleDeletion(_ sender: Any) {
+//    if let selectedRows = tableView.indexPathsForSelectedRows {
+//        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+//        for path in selectedRows {
+//            let todo = todos[path.section].remove(at: path.row)
+//            managedContext.delete(todo)
+//        }
+//      tableView.deleteRows(at: selectedRows, with: .automatic)
+//      CoreDataManager.shared.saveContext()
+//    }
+//  }
   
   @IBAction func addNewTask(_ sender: Any) {
     let newTask = AddDetailTableViewController(style: .grouped)
     let embedNewTask = UINavigationController(rootViewController: newTask)
-    present(embedNewTask, animated: true, completion: nil)
     newTask.delegate = self
+    present(embedNewTask, animated: true, completion: nil)
   }
   
-  func addTask(task: Todo) {
-    let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-    
-    let todo = ToDoManagedObject(context: managedContext)
-    todo.title = task.title
-    todo.isCompleted = task.isCompleted
-    todo.priority = task.priority.rawValue
-    
-    todos[0].append(todo)
-    
-    let insertPath = IndexPath(row: todos[0].count, section: 0)
-    self.tableView.insertRows(at: [insertPath], with: .automatic)
+  func addTask(task: ManagedToDo) {
+    self.frc.indexPath(forObject: task)
     CoreDataManager.shared.saveContext()
-    
     dismiss(animated: true) {
     }
 }
-  
-  override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    if isEditing {
-        return
-    }
-    let title = todos[indexPath.section][indexPath.row].title
-    let detailView = AddDetailTableViewController(style: .grouped)
-    let embedDetaiView = UINavigationController(rootViewController: detailView)
 
-    detailView.taskTitle = title
-    present(embedDetaiView, animated: true, completion: nil)
-  }
+//  override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//    if isEditing {
+//        return
+//    }
+//    let title = todos[indexPath.section][indexPath.row].title
+//    let detailView = AddDetailTableViewController(style: .grouped)
+//    let embedDetaiView = UINavigationController(rootViewController: detailView)
+//
+//    detailView.taskTitle = title
+//    present(embedDetaiView, animated: true, completion: nil)
+//  }
     
     // MARK:- DataCore methods
     
     private func fetchTodos() {
         let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<ToDoManagedObject>(entityName: "ToDoManagedObject")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ToDoManagedObject.priority, ascending: true), NSSortDescriptor(keyPath: \ToDoManagedObject.isCompleted, ascending: false)]
+        let fetchRequest = NSFetchRequest<ManagedToDo>(entityName: "ToDoManagedObject")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ManagedToDo.priority, ascending: true), NSSortDescriptor(keyPath: \ManagedToDo.isCompleted, ascending: false)]
         do {
             let todos = try managedContext.fetch(fetchRequest)
-            var todosList = [[ToDoManagedObject]](repeating: [ToDoManagedObject](), count: 3)
+            var todosList = [[ManagedToDo]](repeating: [ManagedToDo](), count: 3)
             for todo in todos {
-                switch todo.priority {
-                    case Todo.priority.high.rawValue:
-                        todosList[0].append(todo)
-                    case Todo.priority.medium.rawValue:
-                        todosList[1].append(todo)
-                    case Todo.priority.low.rawValue:
-                        todosList[2].append(todo)
-                    default:
-                        todosList[1].append(todo)
-                }
+//                switch todo.priority {
+//                    case Todo.priority.high.rawValue:
+//                        todosList[0].append(todo)
+//                    case Todo.priority.medium.rawValue:
+//                        todosList[1].append(todo)
+//                    case Todo.priority.low.rawValue:
+//                        todosList[2].append(todo)
+//                    default:
+//                        todosList[1].append(todo)
+//                }
             }
-            self.todos = todosList
+//            self.todos = todosList
             tableView.reloadData()
         } catch let err {
             print("failed to fetch todos: \(err)")
@@ -139,32 +129,39 @@ class TodoTableViewController: FetchedResultsTableViewController, AddDetailTable
 //        CoreDataManager.shared.saveContext()
 //    }
     
-    private func updateDatabase() {
-        container?.performBackgroundTask { (contex) in
-            for todo in self.todos {
-//                _ = try? ToDoManagedObject.findOrCreateTodo(matching: todo, in: contex)
-            }
-            try? contex.save()
-        }
-    }
+//    private func updateDatabase() {
+//        container?.performBackgroundTask { (contex) in
+//            for todo in self.todos {
+////                _ = try? ToDoManagedObject.findOrCreateTodo(matching: todo, in: contex)
+//            }
+//            try? contex.save()
+//        }
+//    }
     
   
     // MARK: - Table view data source
   
-  override func numberOfSections(in tableView: UITableView) -> Int {
-    return todos.count
-  }
+override func numberOfSections(in tableView: UITableView) -> Int {
+  return frc.sections?.count ?? 1
+}
+    
+//  override func numberOfSections(in tableView: UITableView) -> Int {
+//    return 3
+//  }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return todos[section].count
+    if let sections = frc.sections, sections[section].numberOfObjects > 0 {
+      return sections[section].numberOfObjects
+    } else {
+      return 0
+    }
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
-    let task = todos[indexPath.section][indexPath.row]
-//    let todo = frc.object(at: indexPath)
-
-    cell.taskLabel?.text = task.title
+    let todo = frc.object(at: indexPath)
+    print(todo)
+    cell.taskLabel?.text = todo.title
     return cell
   }
     
@@ -194,27 +191,27 @@ class TodoTableViewController: FetchedResultsTableViewController, AddDetailTable
     }
   }
   
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete {
-        todos[indexPath.section].remove(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: .automatic)
-    }
-  }
+//  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//    if editingStyle == .delete {
+//        todos[indexPath.section].remove(at: indexPath.row)
+//      tableView.deleteRows(at: [indexPath], with: .automatic)
+//    }
+//  }
   
-  override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-    tableView.cellForRow(at: sourceIndexPath)?.accessoryType = .none
-    
-    let taskToMove = todos[sourceIndexPath.section].remove(at: sourceIndexPath.row)
-    taskToMove.priority = Todo.priority.low.rawValue
-    print(taskToMove)
-    
-    let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-    
-    managedContext.delete(taskToMove)
-    
-    todos[destinationIndexPath.section].insert(taskToMove, at: destinationIndexPath.row)
-    updateDatabase()
-    tableView.reloadData()
-  }
+//  override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+//    tableView.cellForRow(at: sourceIndexPath)?.accessoryType = .none
+//
+//    let taskToMove = todos[sourceIndexPath.section].remove(at: sourceIndexPath.row)
+//    taskToMove.priority = Todo.priority.low.rawValue
+//    print(taskToMove)
+//
+//    let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+//
+//    managedContext.delete(taskToMove)
+//
+//    todos[destinationIndexPath.section].insert(taskToMove, at: destinationIndexPath.row)
+//    updateDatabase()
+//    tableView.reloadData()
+//  }
 }
 

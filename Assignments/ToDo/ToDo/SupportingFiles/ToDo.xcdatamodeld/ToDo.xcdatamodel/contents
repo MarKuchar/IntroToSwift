@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ToDoManagedObject" representedClassName="ToDoManagedObject" syncable="YES">
+    <entity name="ManagedToDo" representedClassName="ManagedToDo" syncable="YES">
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="priority" optional="YES" attributeType="String"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="ToDoManagedObject" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="ManagedToDo" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

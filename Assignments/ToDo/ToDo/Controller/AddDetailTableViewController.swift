@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class AddDetailTableViewController: UITableViewController {
     
     var taskName = DetailTableViewCell(placeholder: "Add new task")
     
     var delegate: AddDetailTableViewControllerDelegate?
+    
+    var managedTask: ManagedToDo?
     
     var taskTitle: String?
     
@@ -34,11 +37,16 @@ class AddDetailTableViewController: UITableViewController {
     }
 
     @objc func save(_: UIBarButtonItem) {
-        
-        let name  = taskName.textField.text ?? ""
-        let task = Todo(title: name, priority: Todo.priority(rawValue: "medium")!, isCompleted: false)
-        delegate?.addTask(task: task)
-////        dismiss(animated: true, completion: nil)
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        if let entity =  NSEntityDescription.entity(forEntityName: "ManagedToDo", in: managedContext) {
+            managedTask = ManagedToDo(entity: entity, insertInto: managedContext)
+            managedTask?.title = taskName.textField.text ?? ""
+            managedTask?.priority = Int32(Todo.priority.high.rawValue)
+            managedTask?.isCompleted = false
+            if let mTask = managedTask {
+               delegate?.addTask(task: mTask)
+           }
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,5 +63,5 @@ class AddDetailTableViewController: UITableViewController {
 }
 
 protocol AddDetailTableViewControllerDelegate {
-    func addTask(task: Todo)
+    func addTask(task: ManagedToDo)
 }

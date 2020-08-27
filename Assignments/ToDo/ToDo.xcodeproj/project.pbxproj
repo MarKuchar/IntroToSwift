@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		952E468724F5D85200BE9E1B /* ToDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 952E468524F5D85200BE9E1B /* ToDo.xcdatamodeld */; };
-		952E468A24F5DE5400BE9E1B /* ToDoManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E468824F5DE5400BE9E1B /* ToDoManagedObject+CoreDataClass.swift */; };
-		952E468B24F5DE5400BE9E1B /* ToDoManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E468924F5DE5400BE9E1B /* ToDoManagedObject+CoreDataProperties.swift */; };
 		952E46B024F5E0AB00BE9E1B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952E46AF24F5E0AB00BE9E1B /* CoreDataManager.swift */; };
 		95334359246DBF8F0077EB93 /* AddDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95334358246DBF8F0077EB93 /* AddDetailTableViewController.swift */; };
 		953648AF246CBF470027E8F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648AE246CBF470027E8F3 /* AppDelegate.swift */; };
@@ -21,6 +19,8 @@
 		953648C7246CC6DB0027E8F3 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */; };
 		953648C9246CCC560027E8F3 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */; };
 		953648CB246CF2710027E8F3 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953648CA246CF2710027E8F3 /* Priority.swift */; };
+		9556FE8F24F8635F00CC913F /* ManagedToDo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9556FE8D24F8635F00CC913F /* ManagedToDo+CoreDataClass.swift */; };
+		9556FE9024F8635F00CC913F /* ManagedToDo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9556FE8E24F8635F00CC913F /* ManagedToDo+CoreDataProperties.swift */; };
 		95593D1024F70361006C4F2F /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95593D0F24F70361006C4F2F /* FetchedResultsTableViewController.swift */; };
 		95970FCE246F7842004A47C3 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95970FCD246F7842004A47C3 /* DetailTableViewCell.swift */; };
 		95970FD1246F7BB9004A47C3 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95970FD0246F7BB9004A47C3 /* UIView+ConstraintLayout.swift */; };
@@ -28,8 +28,6 @@
 
 /* Begin PBXFileReference section */
 		952E468624F5D85200BE9E1B /* ToDo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDo.xcdatamodel; sourceTree = "<group>"; };
-		952E468824F5DE5400BE9E1B /* ToDoManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
-		952E468924F5DE5400BE9E1B /* ToDoManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		952E46AF24F5E0AB00BE9E1B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		95334358246DBF8F0077EB93 /* AddDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetailTableViewController.swift; sourceTree = "<group>"; };
 		953648AB246CBF470027E8F3 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +41,8 @@
 		953648C6246CC6DB0027E8F3 /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		953648C8246CCC560027E8F3 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		953648CA246CF2710027E8F3 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		9556FE8D24F8635F00CC913F /* ManagedToDo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedToDo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9556FE8E24F8635F00CC913F /* ManagedToDo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedToDo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		95593D0F24F70361006C4F2F /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		95970FCD246F7842004A47C3 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		95970FD0246F7BB9004A47C3 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
@@ -102,8 +102,8 @@
 		953648A2246CBF470027E8F3 = {
 			isa = PBXGroup;
 			children = (
-				952E468824F5DE5400BE9E1B /* ToDoManagedObject+CoreDataClass.swift */,
-				952E468924F5DE5400BE9E1B /* ToDoManagedObject+CoreDataProperties.swift */,
+				9556FE8D24F8635F00CC913F /* ManagedToDo+CoreDataClass.swift */,
+				9556FE8E24F8635F00CC913F /* ManagedToDo+CoreDataProperties.swift */,
 				953648AD246CBF470027E8F3 /* ToDo */,
 				953648AC246CBF470027E8F3 /* Products */,
 			);
@@ -211,7 +211,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				952E468A24F5DE5400BE9E1B /* ToDoManagedObject+CoreDataClass.swift in Sources */,
 				953648C7246CC6DB0027E8F3 /* TodoTableViewController.swift in Sources */,
 				953648AF246CBF470027E8F3 /* AppDelegate.swift in Sources */,
 				95970FCE246F7842004A47C3 /* DetailTableViewCell.swift in Sources */,
@@ -222,9 +221,10 @@
 				952E46B024F5E0AB00BE9E1B /* CoreDataManager.swift in Sources */,
 				953648C9246CCC560027E8F3 /* TodoTableViewCell.swift in Sources */,
 				95970FD1246F7BB9004A47C3 /* UIView+ConstraintLayout.swift in Sources */,
+				9556FE8F24F8635F00CC913F /* ManagedToDo+CoreDataClass.swift in Sources */,
 				953648C3246CC3290027E8F3 /* Todo.swift in Sources */,
-				952E468B24F5DE5400BE9E1B /* ToDoManagedObject+CoreDataProperties.swift in Sources */,
 				953648CB246CF2710027E8F3 /* Priority.swift in Sources */,
+				9556FE9024F8635F00CC913F /* ManagedToDo+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
