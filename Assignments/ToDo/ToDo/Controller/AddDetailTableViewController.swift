@@ -41,7 +41,7 @@ class AddDetailTableViewController: UITableViewController {
         if let entity =  NSEntityDescription.entity(forEntityName: "ManagedToDo", in: managedContext) {
             managedTask = ManagedToDo(entity: entity, insertInto: managedContext)
             managedTask?.title = taskName.textField.text ?? ""
-            managedTask?.priority = Int32(Todo.priority.high.rawValue)
+            managedTask?.priority = Int32(Todo.priority.low.rawValue)
             managedTask?.isCompleted = false
             if let mTask = managedTask {
                delegate?.addTask(task: mTask)
