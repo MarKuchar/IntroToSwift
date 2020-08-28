@@ -49,9 +49,11 @@ class TodoTableViewController: FetchedResultsTableViewController, AddDetailTable
     if let selectedRows = tableView.indexPathsForSelectedRows {
         for path in selectedRows {
             let commit = frc.object(at: path)
-            container!.viewContext.delete(commit)
-            CoreDataManager.shared.saveContext()
+//            frc.managedObjectContext.delete(commit)
+            self.controller(NSFetchedResultsController<NSFetchRequestResult>(), didChange: commit, at: path, for: .delete, newIndexPath: nil)
         }
+        
+        CoreDataManager.shared.saveContext()
     }
   }
   
@@ -174,27 +176,23 @@ override func numberOfSections(in tableView: UITableView) -> Int {
     }
   }
   
-//  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//    if editingStyle == .delete {
-//        todos[indexPath.section].remove(at: indexPath.row)
-//      tableView.deleteRows(at: [indexPath], with: .automatic)
-//    }
-//  }
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+        container?.viewContext.delete(frc.object(at: indexPath))
+        CoreDataManager.shared.saveContext()
+    }
+  }
   
-//  override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//    tableView.cellForRow(at: sourceIndexPath)?.accessoryType = .none
-//
-//    let taskToMove = todos[sourceIndexPath.section].remove(at: sourceIndexPath.row)
-//    taskToMove.priority = Todo.priority.low.rawValue
-//    print(taskToMove)
-//
-//    let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-//
-//    managedContext.delete(taskToMove)
-//
-//    todos[destinationIndexPath.section].insert(taskToMove, at: destinationIndexPath.row)
-//    updateDatabase()
-//    tableView.reloadData()
-//  }
+  override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    tableView.cellForRow(at: sourceIndexPath)?.accessoryType = .none
+
+    let taskToMove = frc.object(at: sourceIndexPath)
+     self.frc.object(at: sourceIndexPath).priority = Int32(destinationIndexPath.section)
+    
+    self.controller(NSFetchedResultsController<NSFetchRequestResult>(), didChange: taskToMove, at: sourceIndexPath, for: .move, newIndexPath: destinationIndexPath)
+    
+//    CoreDataManager.shared.saveContext()
+//    updateUI()
+  }
 }
 
