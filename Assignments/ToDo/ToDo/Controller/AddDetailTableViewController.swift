@@ -37,16 +37,9 @@ class AddDetailTableViewController: UITableViewController {
     }
 
     @objc func save(_: UIBarButtonItem) {
-        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-        if let entity =  NSEntityDescription.entity(forEntityName: "ManagedToDo", in: managedContext) {
-            managedTask = ManagedToDo(entity: entity, insertInto: managedContext)
-            managedTask?.title = taskName.textField.text ?? ""
-            managedTask?.priority = Int32(Todo.priority.low.rawValue)
-            managedTask?.isCompleted = false
-            if let mTask = managedTask {
-               delegate?.addTask(task: mTask)
-           }
-        }
+       delegate?.addTask(task: Todo(title: taskName.textField.text ?? "",
+                                    priority: Todo.priority.low,
+                                    isCompleted: false))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,5 +56,5 @@ class AddDetailTableViewController: UITableViewController {
 }
 
 protocol AddDetailTableViewControllerDelegate {
-    func addTask(task: ManagedToDo)
+    func addTask(task: Todo)
 }
