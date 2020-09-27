@@ -11,7 +11,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     
     override func viewDidLoad() {
@@ -29,7 +29,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-        sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin]
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints,
+                                  ARSCNDebugOptions.showWorldOrigin]
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,9 +39,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        // Enable horizontal plane detection
+        configuration.planeDetection = [.horizontal]
+        
         // Run the view's session
         sceneView.session.run(configuration)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,17 +53,65 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-
-    // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
+    
+    func createShip(planeAnchor: ARPlaneAnchor) -> SCNNode {
+        let node = SCNScene(named: "art.scnassets/ship.scn")!.rootNode.clone()
+        node.position = SCNVector3(planeAnchor.center.x, 0,
+                                   planeAnchor.center.z)
         return node
     }
-*/
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node:
+        SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor
+            else { return }
+        for node in node.childNodes {
+            node.position = SCNVector3(planeAnchor.center.x, 0,
+                                       planeAnchor.center.z)
+            if let plane = node.geometry as? SCNPlane {
+                plane.width = CGFloat(planeAnchor.extent.x)
+                plane.height = CGFloat(planeAnchor.extent.z)
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node:
+        SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor
+            else {return
+        }
+        
+        let floor = createFloor(planeAnchor: planeAnchor)
+        node.addChildNode(floor)
+        
+        let ship = createShip(planeAnchor: planeAnchor)
+        node.addChildNode(ship)
+    }
+    
+    func createFloor(planeAnchor: ARPlaneAnchor) -> SCNNode {
+        let node = SCNNode()
+        let geometry = SCNPlane(width:
+            CGFloat(planeAnchor.extent.x), height:
+            CGFloat(planeAnchor.extent.z))
+        node.geometry = geometry
+        node.eulerAngles.x = -.pi / 2
+        node.opacity = 0.25
+        
+        return node
+        
+    }
+    
+    // MARK: - ARSCNViewDelegate
+    
+    /*
+     // Override to create and configure nodes for anchors added to the view's session.
+     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+     let node = SCNNode()
+     
+     return node
+     }
+     */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
