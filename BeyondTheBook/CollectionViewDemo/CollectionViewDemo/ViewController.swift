@@ -58,7 +58,6 @@ extension ViewController: UICollectionViewDataSource {
     } else {
       cell.imageView.image = UIImage(named: "melinda")
     }
-    
     return cell
   }
   

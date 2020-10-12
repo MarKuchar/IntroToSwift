@@ -94,7 +94,9 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
-        cell.imageView.image = UIImage(named: isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name)
+//        cell.imageView.image = UIImage(named: isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name)
+        let view = UIImageView(image: UIImage(named: isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name), highlightedImage: .none)
+        cell.backgroundView = view
         cell.nameLabel.text = isFiltering ? filteredFood[indexPath.row].name : food[indexPath.row].name
         cell.kindLabel.text = isFiltering ? filteredFood[indexPath.row].kind.rawValue : food[indexPath.row].kind.rawValue
         cell.costLabel.text = isFiltering ? filteredFood[indexPath.row].cost : food[indexPath.row].cost
@@ -113,6 +115,3 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: side, height: side + 20)
     }
 }
-
-
-

@@ -13,7 +13,6 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.setContentHuggingPriority(.required, for: .vertical)
-//        iv.heightAnchor.constraint(equalToConstant: 140).isActive = true
         iv.clipsToBounds = true
         return iv
     }()
@@ -23,6 +22,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         lb.font = UIFont.systemFont(ofSize: 15)
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.setContentHuggingPriority(.defaultLow, for: .vertical)
+        lb.textColor = .white
         return lb
     }()
     
@@ -30,6 +30,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
        let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.setContentHuggingPriority(.defaultLow, for: .vertical)
+        lb.textColor = .white
         lb.font = UIFont.boldSystemFont(ofSize: 14)
         return lb
     }()
@@ -39,7 +40,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.setContentHuggingPriority(.defaultLow, for: .vertical)
         lb.font = UIFont.boldSystemFont(ofSize: 15)
-        lb.text = "$$"
+        lb.textColor = .white
         return lb
     }()
     
